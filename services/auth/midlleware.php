@@ -1,9 +1,9 @@
 <?php
 
-function verificaCampos($post, $chaves, $urlRedirecionamento, $mensagemError)
+function verificaCampos($post, $names, $urlRedirecionamento, $mensagemError)
 {
-    foreach ($chaves as $chave) {
-        if (!isset($post[$chave]) or empty($post[$chave])) {
+    foreach ($names as $name) {
+        if (!isset($post[$name]) or empty($post[$name])) {
             $_SESSION['danger'] = $mensagemError;
             header("Location:$urlRedirecionamento");
             die();

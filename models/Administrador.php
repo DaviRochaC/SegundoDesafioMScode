@@ -20,10 +20,18 @@ class Administrador
     return $this->db->inserir($arrayAdmin);
   }
 
-  public function busca($indice, $itemDeBusca)
+  public function update($arrayAdmin,$id)
+  {
+    $where = "id = $id";
+    $arrayAdmin['editado_em'] = date('Y-m-d H:i:s');
+    return $this->db->atualizar($arrayAdmin,$where);
+
+  }
+
+  public function busca(string $colunaDaTabela, $itemDeBusca)
   {
 
-    $where = "$indice = '$itemDeBusca'";
+    $where = "$colunaDaTabela = '$itemDeBusca'";
 
     $busca = $this->db->buscar($where);
 
@@ -40,7 +48,5 @@ class Administrador
 
       return preg_replace("/[^0-9]/", '', $cpf);
     }
-
-
   }
 }

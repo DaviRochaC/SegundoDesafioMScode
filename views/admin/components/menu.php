@@ -2,7 +2,7 @@
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
 
-					<li><a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+					<li><a class="active-menu waves-effect waves-dark" href="http://localhost/mscode/challengetwo/views/admin/dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
 					</li>
 					<li>
 						<a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
