@@ -5,12 +5,12 @@ error_reporting(E_ALL);
 session_start();
 
 require_once('../../models/Administrador.php');
-require_once('../../services/auth/midlleware.php');
+require_once('../../services/auth/middleware.php');
 
 
 $adminModel = new Administrador();
 
-verificaCampos($_POST, array('cpf', 'password'), 'http://localhost/mscode/challengetwo/views/admin/login.php', 'CPF ou senha inválidos');
+Middleware::verificaCampos($_POST, array('cpf', 'password'), 'http://localhost/mscode/challengetwo/views/admin/login.php', 'CPF ou senha inválidos');
 
 if(strlen($_POST['cpf'])!= 14){
     $_SESSION['danger'] = 'CPF ou senha inválidos';

@@ -6,12 +6,12 @@ session_start();
 
 
 require_once('../../../models/Administrador.php');
-require_once('../../../services/auth/midlleware.php');
+require_once('../../../services/auth/middleware.php');
 
 $adminModel = new Administrador();
 
 
-verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), 'http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
+Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), 'http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
 
 
 

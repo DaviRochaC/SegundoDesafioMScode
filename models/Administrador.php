@@ -28,7 +28,7 @@ class Administrador
 
   }
 
-  public function busca(string $colunaDaTabela, $itemDeBusca)
+  public function busca(string $colunaDaTabela, mixed $itemDeBusca): bool|array
   {
 
     $where = "$colunaDaTabela = '$itemDeBusca'";

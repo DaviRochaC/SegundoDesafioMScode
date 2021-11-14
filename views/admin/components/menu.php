@@ -12,7 +12,15 @@
 						<a href="table.html" class="waves-effect waves-dark"><i class="fa fa-table"></i> Responsive Tables</a>
 					</li>
 					<li>
-						<a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
+						<a href="#" class="waves-effect waves-dark"><i class="fas fa-users"></i>Administradores</a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php">Novo Administrador</a>
+							</li>
+							<li>
+								<a href="#">Remover Administrador</a>
+							</li>
+						</ul>
 					</li>
 
 

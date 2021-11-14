@@ -46,9 +46,9 @@ if (!isset($_GET['i'])) {
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div class="header">
-                <h1 class="page-header">
+                <h3 class="page-header">
                     Alterar Senha
-                </h1>
+                </h3>
 
             </div>
 
