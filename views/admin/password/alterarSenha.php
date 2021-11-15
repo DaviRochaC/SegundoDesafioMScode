@@ -8,9 +8,6 @@ if (!isset($_GET['i'])) {
 }
 
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +57,12 @@ if (!isset($_GET['i'])) {
                             <div class="card-content">
 
 
-                                <form method="POST" action="../../../actions/admin/password/alterarSenha.php" class="col s12">
+                                <form method="POST" action="../../../app/actions/admin/password/alterarSenha.php" class="col s12">
 
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input name="senhaAtual" type="text" class="validate">
-                                            <label>Senha antiga</label>
+                                            <label>Senha atual</label>
                                         </div>
                                     </div>
 

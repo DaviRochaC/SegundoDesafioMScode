@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/style2.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="" rel="stylesheet" />
     <script type="text/javascript" src=""></script>
 
@@ -27,7 +27,7 @@ session_start();
 
                       <?php include('components/alerts.php') ?>
 
-                    <form method="POST" action="../../actions/admin/login.php">
+                    <form method="POST" action="../../app/actions/admin/login.php">
                         <div class="input-field d-flex flex-column mt-3">
                             <span>CPF</span>
                             <input type="text"  name="cpf" class="form-control cpf" maxlength="14">

@@ -11,33 +11,33 @@ session_start();
     <title> Novo administrador</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 
 <body>
     <div id="wrapper">
         <!--/. NAV BAR -->
-        <?php include('components/navbar.php'); ?>
+        <?php include('../components/navbar.php'); ?>
         <!--/. NAV TOP  -->
-        <?php include('components/menu.php'); ?>
+        <?php include('../components/menu.php'); ?>
 
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div class="header">
                 <h3 class="page-header">
-                    Novo Administrador
+                    Novo Cliente
                 </h3>
 
             </div>
@@ -48,8 +48,8 @@ session_start();
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('components/alerts.php')?>
-                                <form method="POST" action="../../app/actions/admin/cadastrar.php" class="col s12">
+                                <?php include('components/alerts.php') ?>
+                                <form method="POST" action="../../app/actions/admin/clientes/c" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input name="nome" type="text" class="validate">
@@ -57,8 +57,8 @@ session_start();
 
                                         </div>
                                         <div class="input-field col s4">
-                                            <input name="cpf" type="text" class="validate cpf">
-                                            <label>CPF</label>
+                                            <input name="cpf" type="text" class="validate cpfOuCnpj">
+                                            <label>CPF/CNPJ</label>
                                         </div>
 
                                     </div>
@@ -69,12 +69,7 @@ session_start();
                                             <label>Email</label>
                                         </div>
 
-                                        <div class="input-field col s6">
 
-                                            <input type="checkbox" class="filled-in" id="master" value="1"  name="admin_master"/>
-                                            <label for="master">Adminstrador master </label>
-
-                                        </div>
 
                                     </div>
                                     <div class="row">
@@ -103,30 +98,36 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 
-    <script src="assets/materialize/js/materialize.min.js"></script>
+    <script src="../assets/materialize/js/materialize.min.js"></script>
 
     <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="../assets/js/jquery.metisMenu.js"></script>
     <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
+    <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../assets/js/morris/morris.js"></script>
 
 
-    <script src="assets/js/easypiechart.js"></script>
-    <script src="assets/js/easypiechart-data.js"></script>
+    <script src="../assets/js/easypiechart.js"></script>
+    <script src="../assets/js/easypiechart-data.js"></script>
 
-    <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+    <script src="../assets/js/Lightweight-Chart/jquery.chart.js"></script>
 
     <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+    <script src="../assets/js/custom-scripts.js"></script>
 
     <script>
         $(document).ready(function() {
-            $('.cpf').mask('000.000.000-00', {
-                reverse: true
-            });
+            var options = {
+                onKeyPress: function(cpf, ev, el, op) {
+                    var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                    $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+                }
+            }
+
+            $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
+
         });
     </script>
 
