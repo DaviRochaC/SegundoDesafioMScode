@@ -48,8 +48,8 @@ session_start();
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('components/alerts.php') ?>
-                                <form method="POST" action="../../app/actions/admin/clientes/c" class="col s12">
+                                <?php include('../components/alerts.php') ?>
+                            <form method="POST" action="../../../app/actions/admin/clientes/cadastrar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input name="nome" type="text" class="validate">
@@ -57,7 +57,7 @@ session_start();
 
                                         </div>
                                         <div class="input-field col s4">
-                                            <input name="cpf" type="text" class="validate cpfOuCnpj">
+                                            <input name="cpf_cnpj" type="text" class="validate cpfOuCnpj" minlength="14" maxlength="18">
                                             <label>CPF/CNPJ</label>
                                         </div>
 

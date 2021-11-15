@@ -32,7 +32,7 @@ if ($emailJaCadastradoNoBanco) {
 }
 
 if ($cpfJaCadastradoNoBanco) {
-    $_SESSION[''] = 'Já existe um administrador vinculado ao email informado';
+    $_SESSION[''] = 'Já existe um administrador vinculado ao CPF informado';
     header('Location:http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php');
     die();
 }
