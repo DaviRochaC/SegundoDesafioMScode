@@ -20,13 +20,23 @@ class Administrador
   use Crud;
 
 
-  public function formataCpf($cpf)
+  public function limpaCpf($cpf)
   {
     if (strlen($cpf) == 14) {
 
       return preg_replace("/[^0-9]/", '', $cpf);
     }
+    
   }
+
+  public function formataCpfeCnpj($cpf)
+  {
+    if (strlen($cpf) == 11) {
+
+      return $cpf = substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2);
+    }
+    
+}
 
 
 

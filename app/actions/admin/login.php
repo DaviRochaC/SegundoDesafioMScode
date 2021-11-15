@@ -19,7 +19,7 @@ if(strlen($_POST['cpf'])!= 14){
     die();
 }
 
-$cpf = $adminModel->formatacpf(htmlspecialchars($_POST['cpf']));
+$cpf = $adminModel->limpacpf(htmlspecialchars($_POST['cpf']));
 
 
 $admin = $adminModel->busca('cpf',$cpf);

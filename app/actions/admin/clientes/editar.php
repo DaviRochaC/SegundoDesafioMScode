@@ -11,34 +11,51 @@ use App\Models\Services\Auth\Middleware;
 
 $clienteModel = new Cliente();
 
-Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), 'http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php', 'Todos os campos são obrigatórios');
+
+if (intval(base64_decode($_POST['i'])) <= 0) {
+    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
+    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php');
+    die();
+}
+
+
+Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), 'http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i=' . $_POST['i'], 'Todos os campos são obrigatórios');
+
+
+$id = intval(base64_decode($_POST['i']));
+
+$cliente = $clienteModel->busca('id', $id);
+
+if (!$cliente) {
+    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
+    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php');
+    die();
+}
 
 
 if (strlen($_POST['cpf_cnpj']) < 14 or strlen($_POST['cpf_cnpj']) > 18) {
     $_SESSION['danger'] = 'CPF ou CNPJ inválido';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
+    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i=' . $_POST['i']);
     die();
 }
 
 if (strlen($_POST['cpf_cnpj']) == 15 or strlen($_POST['cpf_cnpj']) == 16 or strlen($_POST['cpf_cnpj']) == 17) {
     $_SESSION['danger'] = 'CPF ou CNPJ inválido';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
+    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i=' . $_POST['i']);
     die();
 }
 
 $cpfOuCnpj = $clienteModel->limpaCpfeCnpj(htmlspecialchars($_POST['cpf_cnpj']));
-
-
 $emailJaCadastradoNoBanco = $clienteModel->busca('email', htmlspecialchars($_POST['email']));
 $cpfOuCnpjJaCadastradoNoBanco =  $clienteModel->busca('cpf_cnpj', $cpfOuCnpj);
 
-if ($emailJaCadastradoNoBanco) {
+if ($emailJaCadastradoNoBanco and $emailJaCadastradoNoBanco['id'] != $cliente['id']) {
     $_SESSION['danger'] = 'Já existe um cliente vinculado ao email informado';
     header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
     die();
 }
 
-if ($cpfOuCnpjJaCadastradoNoBanco) {
+if ($cpfOuCnpjJaCadastradoNoBanco and $cpfOuCnpjJaCadastradoNoBanco['id'] != $cliente['id']) {
     $_SESSION['danger'] = 'Já existe um cliente vinculado ao CPF ou CNPJ informado';
     header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
     die();
@@ -52,8 +69,8 @@ $arrayCliente = [
 ];
 
 
-$clienteModel->create($arrayCliente);
+$clienteModel->update($arrayCliente, $cliente['id']);
 
-$_SESSION['success'] = 'Cliente cadastrado com sucesso!';
+$_SESSION['success'] = 'Cliente editado com sucesso!';
 header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
 die();

@@ -22,6 +22,11 @@
 					<li>
 						<a href="http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php">Novo Cliente</a>
 					</li>
+					<li>
+						<a href="http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php">Gerenciar Clientes</a>
+					</li>
+
+					
 
 
 				</ul>

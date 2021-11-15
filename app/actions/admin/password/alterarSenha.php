@@ -11,21 +11,23 @@ use App\Models\Services\Auth\Middleware;
 
 $adminModel = new Administrador();
 
-
-Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), 'http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
-
-
-
 if (intval(base64_decode($_POST['i'])) <= 0) {
     $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
     header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
     die();
 }
 
+Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), 'http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
+
 $id = intval(base64_decode($_POST['i']));
 
 $admin = $adminModel->busca('id', $id);
 
+if (!$admin) {
+    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
+    header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
+    die();
+}
 
 if (md5(htmlspecialchars($_POST['senhaAtual'])) != $admin['senha']) {
     $_SESSION['danger'] = 'Senha atual incorreta!';

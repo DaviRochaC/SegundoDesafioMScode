@@ -1,5 +1,22 @@
 <?php
+
 session_start();
+require_once('../../../vendor/autoload.php');
+
+use App\Models\Cliente;
+
+if (!isset($_GET['i'])) {
+    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
+    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php');
+    die();
+}
+
+$clienteModel = new Cliente();
+
+$cliente = $clienteModel->busca('id', intval(base64_decode($_GET['i'])));
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +25,7 @@ session_start();
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Novo Cliente</title>
+    <title> Editar cliente</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -37,7 +54,7 @@ session_start();
         <div id="page-wrapper">
             <div class="header">
                 <h3 class="page-header">
-                    Novo Cliente
+                    Editar <?php ?>
                 </h3>
 
             </div>
@@ -49,15 +66,15 @@ session_start();
 
                             <div class="card-content">
                                 <?php include('../components/alerts.php') ?>
-                            <form method="POST" action="../../../app/actions/admin/clientes/cadastrar.php" class="col s12">
+                                <form method="POST" action="../../../app/actions/admin/clientes/editar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input name="nome" type="text" class="validate">
+                                            <input name="nome" type="text" class="validate" value="<?= $cliente['nome']?>">
                                             <label>Nome</label>
 
                                         </div>
                                         <div class="input-field col s4">
-                                            <input name="cpf_cnpj" type="text" class="validate cpfOuCnpj" minlength="14" maxlength="18">
+                                            <input name="cpf_cnpj" type="text" class="validate cpfOuCnpj" value="<?= $cliente['cpf_cnpj']?>" minlength="14" maxlength="18">
                                             <label>CPF/CNPJ</label>
                                         </div>
 
@@ -65,15 +82,15 @@ session_start();
                                     <div class="row">
 
                                         <div class="input-field col s6">
-                                            <input name="email" type="email" class="validate">
+                                            <input name="email" type="email" class="validate" value="<?= $cliente['email']?>">
                                             <label>Email</label>
                                         </div>
 
-
+                                        <input name="i" type="hidden" value="<?=base64_encode($cliente['id'])?>" class="validate">
 
                                     </div>
                                     <div class="row">
-                                        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                                        <button type="submit" class="btn btn-success btn-block">Salvar Alterações</button>
                                     </div>
 
                                 </form>
