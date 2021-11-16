@@ -3,6 +3,7 @@ ini_set('display_errors', true);
 error_reporting(E_ALL);
 session_start();
 
+
 require_once('../../../../vendor/autoload.php');
 
 use App\Models\Cliente;
@@ -45,9 +46,12 @@ if (strlen($_POST['cpf_cnpj']) == 15 or strlen($_POST['cpf_cnpj']) == 16 or strl
     die();
 }
 
+
 $cpfOuCnpj = $clienteModel->limpaCpfeCnpj(htmlspecialchars($_POST['cpf_cnpj']));
+
 $emailJaCadastradoNoBanco = $clienteModel->busca('email', htmlspecialchars($_POST['email']));
-$cpfOuCnpjJaCadastradoNoBanco =  $clienteModel->busca('cpf_cnpj', $cpfOuCnpj);
+$cpfOuCnpjCadastradoNoBanco = $clienteModel->busca('cpf_cnpj', $cpfOuCnpj);
+
 
 if ($emailJaCadastradoNoBanco and $emailJaCadastradoNoBanco['id'] != $cliente['id']) {
     $_SESSION['danger'] = 'Já existe um cliente vinculado ao email informado';
@@ -69,8 +73,9 @@ $arrayCliente = [
 ];
 
 
-$clienteModel->update($arrayCliente, $cliente['id']);
+$cliente = $clienteModel->update($arrayCliente, $cliente['id']);
+
 
 $_SESSION['success'] = 'Cliente editado com sucesso!';
-header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php');
+header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php');
 die();

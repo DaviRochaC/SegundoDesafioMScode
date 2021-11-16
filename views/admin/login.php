@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,15 +25,15 @@ session_start();
                         <h2 class="text-center">Bem vindo!</h2>
                     </div>
 
-                      <?php include('components/alerts.php') ?>
+                    <?php include('components/alerts.php') ?>
 
                     <form method="POST" action="../../app/actions/admin/login.php">
                         <div class="input-field d-flex flex-column mt-3">
                             <span>CPF</span>
-                            <input type="text"  name="cpf" class="form-control cpf" maxlength="14">
+                            <input type="text" name="cpf" class="form-control cpf" maxlength="14">
 
                             <span class="mt-3">Password</span>
-                            <input  name="password" class="form-control" type="password">
+                            <input name="password" class="form-control" type="password">
 
                             <button type="submit" class="mt-3 btn btn-dark"> Login
                             </button>

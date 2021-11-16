@@ -39,9 +39,10 @@ if ($admin['senha'] != md5(htmlspecialchars($_POST['password']))) {
 }
 
 $_SESSION['admin'] = [
-    'nome' => $admin['nome'],
     'id' => $admin['id'],
-    'admin_master' => $admin['admin_master']
+    'nome' => $admin['nome'],
+    'admin_master' => $admin['admin_master'],
+    'logado' => true
 ];
 
 header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');

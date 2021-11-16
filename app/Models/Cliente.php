@@ -17,11 +17,11 @@ class Cliente
 
   use Crud;
 
-  public function limpaCpfeCnpj($cpfcnpj)
+  public function limpaCpfeCnpj(string $cpfcnpj): string
   {
     if (strlen($cpfcnpj) == 14) {
 
-      preg_replace("/[^0-9]/", '', $cpfcnpj);
+      return preg_replace("/[^0-9]/", '', $cpfcnpj);
     }
     if (strlen($cpfcnpj) == 18) {
 
@@ -29,7 +29,7 @@ class Cliente
     }
   }
 
-  public function formataCpfeCnpj($cpfcnpj)
+  public function formataCpfeCnpj(string $cpfcnpj): string
   {
     if (strlen($cpfcnpj) == 11) {
 

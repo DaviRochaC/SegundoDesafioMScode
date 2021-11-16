@@ -5,7 +5,7 @@ namespace App\Models;
 trait Crud
 {
 
-    public function create(array $dados)
+    public function create(array $dados): bool
     {
         $dados['criado_em'] = date('Y-m-d H:i:s');
         $dados['editado_em'] = date('Y-m-d H:i:s');
@@ -13,7 +13,7 @@ trait Crud
         return $this->db->inserir($dados);
     }
 
-    public function update(array $dados, mixed $id)
+    public function update(array $dados, mixed $id): bool
     {
         $where = "id = $id";
         $dados['editado_em'] = date('Y-m-d H:i:s');
@@ -23,6 +23,7 @@ trait Crud
     public function busca(string $colunaDaTabela = null, mixed $itemDeBusca = null): bool|array
     {
         if ($colunaDaTabela != null and $itemDeBusca != null) {
+
             $where = "$colunaDaTabela = '$itemDeBusca'";
 
             $busca = $this->db->buscar($where);
@@ -33,11 +34,10 @@ trait Crud
                 return false;
             }
         }
-
         return $this->db->buscar();
     }
 
-    public function delete($id)
+    public function delete($id): bool
     {
         $where = "id = $id";
         return $this->db->deletar($where);

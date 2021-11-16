@@ -20,27 +20,25 @@ class Administrador
   use Crud;
 
 
-  public function limpaCpf($cpf)
+  public function limpaCpf(string $cpf): string
   {
     if (strlen($cpf) == 14) {
 
-      return preg_replace("/[^0-9]/", '', $cpf);
+      return $cpf = preg_replace("/[^0-9]/", '', $cpf);
     }
-    
   }
 
-  public function formataCpfeCnpj($cpf)
+  public function formataCpfeCnpj(string $cpf): string
   {
     if (strlen($cpf) == 11) {
 
       return $cpf = substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2);
     }
-    
-}
+  }
 
 
 
-  public function gerarSenha(int $tamanho)
+  public function gerarSenha(int $tamanho): string
   {
     $senha = null;
     $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
