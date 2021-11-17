@@ -9,10 +9,11 @@ use App\Models\Cliente;
 use App\Models\Services\Auth\Middleware;
 
 
-$clienteModel = new Cliente();
+Middleware::verificaAdminLogado();
 
 Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), 'http://localhost/mscode/challengetwo/views/admin/clientes/cadastrar.php', 'Todos os campos são obrigatórios');
 
+$clienteModel = new Cliente();
 
 if (strlen($_POST['cpf_cnpj']) < 14 or strlen($_POST['cpf_cnpj']) > 18) {
     $_SESSION['danger'] = 'CPF ou CNPJ inválido';

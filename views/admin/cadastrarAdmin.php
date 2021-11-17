@@ -1,5 +1,11 @@
 <?php
+
+require_once('../../vendor/autoload.php');
+use App\Models\Services\Auth\Middleware;
+
 session_start();
+
+Middleware::verificaAdminLogado();
 ?>
 
 <!DOCTYPE html>
@@ -67,13 +73,6 @@ session_start();
                                         <div class="input-field col s6">
                                             <input name="email" type="email" class="validate">
                                             <label>Email</label>
-                                        </div>
-
-                                        <div class="input-field col s6">
-
-                                            <input type="checkbox" class="filled-in" id="master" value="1"  name="admin_master"/>
-                                            <label for="master">Adminstrador master </label>
-
                                         </div>
 
                                     </div>

@@ -16,6 +16,13 @@ class Middleware
         }
     }
 
+    public static function verificaAdminMaster( string $urlRedirecionamento):void
+    {
+        if ((!isset($_SESSION['admin']['admin_master']))or($_SESSION['admin']['admin_master'] != true)) {
+            self::redirecionar('danger','Acesso inválido', $urlRedirecionamento);
+        }
+    }
+
     public static function verificaCampos(array $post, array $names, string $urlRedirecionamento, string $mensagemError): void
     {
         foreach ($names as $name) {

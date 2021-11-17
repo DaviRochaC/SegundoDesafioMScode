@@ -13,7 +13,7 @@ trait Crud
         return $this->db->inserir($dados);
     }
 
-    public function update(array $dados, mixed $id): bool
+    public function update(array $dados, int $id): bool
     {
         $where = "id = $id";
         $dados['editado_em'] = date('Y-m-d H:i:s');
@@ -37,7 +37,7 @@ trait Crud
         return $this->db->buscar();
     }
 
-    public function delete($id): bool
+    public function delete( int $id): bool
     {
         $where = "id = $id";
         return $this->db->deletar($where);

@@ -41,7 +41,7 @@ if ($admin['senha'] != md5(htmlspecialchars($_POST['password']))) {
 $_SESSION['admin'] = [
     'id' => $admin['id'],
     'nome' => $admin['nome'],
-    'admin_master' => $admin['admin_master'],
+    'admin_master' => boolval($admin['admin_master']),
     'logado' => true
 ];
 

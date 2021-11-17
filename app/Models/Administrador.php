@@ -22,13 +22,11 @@ class Administrador
 
   public function limpaCpf(string $cpf): string
   {
-    if (strlen($cpf) == 14) {
-
       return $cpf = preg_replace("/[^0-9]/", '', $cpf);
-    }
+  
   }
 
-  public function formataCpfeCnpj(string $cpf): string
+  public function formataCpf(string $cpf): string
   {
     if (strlen($cpf) == 11) {
 

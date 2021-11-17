@@ -54,7 +54,7 @@ $cliente = $clienteModel->busca('id', intval(base64_decode($_GET['i'])));
         <div id="page-wrapper">
             <div class="header">
                 <h3 class="page-header">
-                    Editar <?php ?>
+                    Editar
                 </h3>
 
             </div>

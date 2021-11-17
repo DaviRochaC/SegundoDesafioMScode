@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+require_once('../../../vendor/autoload.php');
+
+use App\Models\Services\Auth\Middleware;
+
+session_start();
+
+Middleware::verificaAdminLogado();
+
 if (!isset($_GET['i'])) {
     $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
     header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');

@@ -10,8 +10,8 @@ use App\Models\Cliente;
 use App\Models\Services\Auth\Middleware;
 
 
-$clienteModel = new Cliente();
 
+Middleware::verificaAdminLogado();
 
 if (intval(base64_decode($_POST['i'])) <= 0) {
     $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
@@ -22,6 +22,7 @@ if (intval(base64_decode($_POST['i'])) <= 0) {
 
 Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), 'http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i=' . $_POST['i'], 'Todos os campos são obrigatórios');
 
+$clienteModel = new Cliente();
 
 $id = intval(base64_decode($_POST['i']));
 
@@ -73,7 +74,7 @@ $arrayCliente = [
 ];
 
 
-$cliente = $clienteModel->update($arrayCliente, $cliente['id']);
+$cliente = $clienteModel->update($arrayCliente, intval($cliente['id']));
 
 
 $_SESSION['success'] = 'Cliente editado com sucesso!';

@@ -1,6 +1,8 @@
 <?php
 
-require_once('../../models/Administrador.php');
+require('../../vendor/autoload.php');
+
+use App\Models\Administrador;
 
 $adminModel = new Administrador();
 
@@ -14,4 +16,3 @@ $arrayAdmin = [
 ];
 
 $adminModel->create($arrayAdmin);
-

@@ -42,9 +42,9 @@ $clientes = $clienteModel->busca();
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div class="header">
-            <h1 class="page-header">
+            <h3 class="page-header">
                 Gerenciar clientes
-            </h1>
+            </h3>
 
         </div>
 
