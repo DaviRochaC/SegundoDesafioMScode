@@ -19,15 +19,9 @@ class Cliente
 
   public function limpaCpfeCnpj(string $cpfcnpj): string
   {
-    if (strlen($cpfcnpj) == 14) {
-
-      return preg_replace("/[^0-9]/", '', $cpfcnpj);
-    }
-    if (strlen($cpfcnpj) == 18) {
-
-      return preg_replace("/[^0-9]/", '', $cpfcnpj);
-    }
+    return preg_replace("/[^0-9]/", '', $cpfcnpj);
   }
+
 
   public function formataCpfeCnpj(string $cpfcnpj): string
   {

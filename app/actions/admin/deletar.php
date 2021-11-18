@@ -9,10 +9,10 @@ use App\Models\Administrador;
 use App\Models\Services\Auth\Middleware;
 
 Middleware::verificaAdminLogado();
-Middleware::verificaAdminMaster('http://localhost/mscode/challengetwo/views/admin/dashboard.php');
+Middleware::verificaAdminMaster('/views/admin/dashboard.php');
 
 if ((!isset($_GET['i'])) or (intval(base64_decode($_GET['i'])) <= 0)) {
-    Middleware::redirecionar('danger', 'Ocorreu um erro tente novamente!', 'http://localhost/mscode/challengetwo/views/admin/gerenciarAdmin.php');
+    Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'danger', 'Ocorreu um erro tente novamente!');
 }
 
 $adminModel = new Administrador();
@@ -24,4 +24,7 @@ $admin = $adminModel->busca('id', $id);
 
 $adminModel->delete(intval($admin['id']));
 
-Middleware::redirecionar('success', 'Administrador deletado com sucesso!', 'http://localhost/mscode/challengetwo/views/admin/gerenciarAdmin.php');
+//TODO ENVIAR EMAIL DE DESLIGAMENTO;
+
+Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'success', 'Administrador deletado com sucesso!');
+

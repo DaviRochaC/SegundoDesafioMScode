@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+require('../../../vendor/autoload.php');
+
+use App\Models\Services\Auth\Middleware;
+
+Middleware::verificaAdminLogado();
+
+
+
 ?>
 
 <!DOCTYPE html>

@@ -5,12 +5,12 @@ require_once('../../vendor/autoload.php');
 use App\Models\Administrador;
 use App\Models\Services\Auth\Middleware;
 
-$adminModel = new Administrador();
+
 
 Middleware::verificaAdminLogado();
-Middleware::verificaAdminMaster('http://localhost/mscode/challengetwo/views/admin/dashboard.php');
+Middleware::verificaAdminMaster('/views/admin/dashboard.php');
 
-
+$adminModel = new Administrador();
 $admins = $adminModel->busca();
 
 
@@ -58,7 +58,7 @@ $admins = $adminModel->busca();
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
-                    <?php include('../components/alerts.php') ?>
+                    <?php include('components/alerts.php') ?>
                     <div class="card">
                         <div class="card-content">
                             <div class="table-responsive">

@@ -2,6 +2,8 @@
 
 namespace App\Models\Services\Auth;
 
+use Dotenv\Dotenv;
+
 
 
 class Middleware
@@ -9,35 +11,46 @@ class Middleware
 {
 
 
-    public static function verificaAdminLogado():void
+    public static function verificaAdminLogado(): void
     {
-        if ((!isset($_SESSION['admin']['logado']))or($_SESSION['admin']['logado'] != true)) {
-            self::redirecionar('danger', 'Acesso negado!', 'http://localhost/mscode/challengetwo/views/admin/login.php');
+        if ((!isset($_SESSION['admin']['logado'])) or (!$_SESSION['admin']['logado'])) {
+            self::redirecionar('/views/admin/login.php', 'danger', 'Acesso negado!');
         }
     }
 
-    public static function verificaAdminMaster( string $urlRedirecionamento):void
+    public static function verificaAdminMaster(string $urlRedirecionamento): void
     {
-        if ((!isset($_SESSION['admin']['admin_master']))or($_SESSION['admin']['admin_master'] != true)) {
-            self::redirecionar('danger','Acesso inválido', $urlRedirecionamento);
+        if ((!isset($_SESSION['admin']['admin_master'])) or ($_SESSION['admin']['admin_master'] != true)) {
+            self::redirecionar($urlRedirecionamento, 'danger', 'Acesso inválido!');
         }
     }
 
-    public static function verificaCampos(array $post, array $names, string $urlRedirecionamento, string $mensagemError): void
+    public static function verificaCampos(array $postOuGet, array $names, string $urlRedirecionamento, string $mensagemError): void
     {
         foreach ($names as $name) {
-            if (!isset($post[$name]) or empty($post[$name])) {
+            if (!isset($postOuGet[$name]) or empty($postOuGet[$name])) {
 
-                self::redirecionar('danger', $mensagemError, $urlRedirecionamento);
+                self::redirecionar($urlRedirecionamento, 'danger', $mensagemError);
             }
         }
     }
 
-    public static function redirecionar(string $nomeSession, string $mensagem, string $urlRedirecionamento,): void
+    public static function redirecionar(string $urlRedirecionamento, string $nomeSession = null, string $mensagem = null): void
     {
-        $_SESSION[$nomeSession] = "$mensagem";
-        header("Location: $urlRedirecionamento");
+        $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');
+        $dotenv->load();
+        if ($nomeSession != null and $mensagem != null) {
+            $_SESSION[$nomeSession] = $mensagem;
+        }
+        header('Location:' . getEnv('URL_BASE') . $urlRedirecionamento);
         die();
     }
 
+    public static function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        self::redirecionar('/views/admin/login.php');
+    }
 }

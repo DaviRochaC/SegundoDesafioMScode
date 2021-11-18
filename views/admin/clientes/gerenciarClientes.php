@@ -4,6 +4,9 @@ session_start();
 require_once('../../../vendor/autoload.php');
 
 use App\Models\Cliente;
+use App\Models\Services\Auth\Middleware;
+
+Middleware::verificaAdminLogado();
 
 $clienteModel = new Cliente();
 
@@ -73,7 +76,7 @@ $clientes = $clienteModel->busca();
 
                                                 <?php $cpfOucnpj = $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']) ?>
                                                 <td><?= $cpfOucnpj ?></td>
-                                                <td><a class="btn btn-primary"href="http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i='.<?=base64_encode($cliente['id'])?>">Editar</a></td>
+                                                <td><a class="btn btn-primary" href="http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i='.<?=base64_encode($cliente['id'])?>">Editar</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

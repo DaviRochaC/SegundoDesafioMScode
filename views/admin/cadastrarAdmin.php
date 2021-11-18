@@ -1,11 +1,14 @@
 <?php
 
 require_once('../../vendor/autoload.php');
+
 use App\Models\Services\Auth\Middleware;
 
 session_start();
 
+
 Middleware::verificaAdminLogado();
+Middleware::verificaAdminMaster('/views/admin/dashboard.php');
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +57,7 @@ Middleware::verificaAdminLogado();
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('components/alerts.php')?>
+                                <?php include('components/alerts.php') ?>
                                 <form method="POST" action="../../app/actions/admin/cadastrar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">

@@ -9,11 +9,7 @@ session_start();
 
 Middleware::verificaAdminLogado();
 
-if (!isset($_GET['i'])) {
-    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
-    die();
-}
+Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorreu um erro, tente novamente!');
 
 
 ?>

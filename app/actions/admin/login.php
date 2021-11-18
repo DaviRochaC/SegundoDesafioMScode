@@ -9,33 +9,26 @@ require("../../../vendor/autoload.php");
 use App\Models\Services\Auth\Middleware;
 use App\Models\Administrador;
 
-Middleware::verificaCampos($_POST, array('cpf', 'password'), 'http://localhost/mscode/challengetwo/views/admin/login.php', 'CPF ou senha inválidos');
+Middleware::verificaCampos($_POST, array('cpf', 'password'), '/views/admin/login.php', 'CPF ou senha inválidos!');
 
 $adminModel = new Administrador();
 
-if(strlen($_POST['cpf'])!= 14){
-    $_SESSION['danger'] = 'CPF ou senha inválidos';
-    header('Location: http://localhost/mscode/challengetwo/views/admin/login.php');
-    die();
+if (strlen($_POST['cpf']) != 14) {
+    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
 }
 
 $cpf = $adminModel->limpacpf(htmlspecialchars($_POST['cpf']));
 
-
-$admin = $adminModel->busca('cpf',$cpf);
+$admin = $adminModel->busca('cpf', $cpf);
 
 
 if (!$admin) {
-    $_SESSION['danger'] = 'CPF ou senha inválidos';
-    header('Location: http://localhost/mscode/challengetwo/views/admin/login.php');
-    die();
+    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
 }
 
 
 if ($admin['senha'] != md5(htmlspecialchars($_POST['password']))) {
-    $_SESSION['danger'] = 'CPF ou senha inválidos';
-    header('Location: http://localhost/mscode/challengetwo/views/admin/login.php');
-    die();
+    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
 }
 
 $_SESSION['admin'] = [
@@ -45,5 +38,4 @@ $_SESSION['admin'] = [
     'logado' => true
 ];
 
-header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
-die();
+Middleware::redirecionar('/views/admin/dashboard.php');

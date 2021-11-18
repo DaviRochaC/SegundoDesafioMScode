@@ -22,7 +22,7 @@ class Administrador
 
   public function limpaCpf(string $cpf): string
   {
-      return $cpf = preg_replace("/[^0-9]/", '', $cpf);
+      return  preg_replace("/[^0-9]/", '', $cpf);
   
   }
 

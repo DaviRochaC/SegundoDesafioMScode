@@ -4,12 +4,13 @@ session_start();
 require_once('../../../vendor/autoload.php');
 
 use App\Models\Cliente;
+use App\Models\Services\Auth\Middleware;
 
-if (!isset($_GET['i'])) {
-    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/clientes/gerenciarClientes.php');
-    die();
-}
+Middleware::verificaAdminLogado();
+
+
+Middleware::verificaCampos($_GET, array('i'), '/views/admin/clientes/gerenciarClientes.php', 'Ocorreu um erro, tente novamente!');
+
 
 $clienteModel = new Cliente();
 
@@ -69,12 +70,12 @@ $cliente = $clienteModel->busca('id', intval(base64_decode($_GET['i'])));
                                 <form method="POST" action="../../../app/actions/admin/clientes/editar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input name="nome" type="text" class="validate" value="<?= $cliente['nome']?>">
+                                            <input name="nome" type="text" class="validate" value="<?= $cliente['nome'] ?>">
                                             <label>Nome</label>
 
                                         </div>
                                         <div class="input-field col s4">
-                                            <input name="cpf_cnpj" type="text" class="validate cpfOuCnpj" value="<?= $cliente['cpf_cnpj']?>" minlength="14" maxlength="18">
+                                            <input name="cpf_cnpj" type="text" class="validate cpfOuCnpj" value="<?= $cliente['cpf_cnpj'] ?>" minlength="14" maxlength="18">
                                             <label>CPF/CNPJ</label>
                                         </div>
 
@@ -82,11 +83,11 @@ $cliente = $clienteModel->busca('id', intval(base64_decode($_GET['i'])));
                                     <div class="row">
 
                                         <div class="input-field col s6">
-                                            <input name="email" type="email" class="validate" value="<?= $cliente['email']?>">
+                                            <input name="email" type="email" class="validate" value="<?= $cliente['email'] ?>">
                                             <label>Email</label>
                                         </div>
 
-                                        <input name="i" type="hidden" value="<?=base64_encode($cliente['id'])?>" class="validate">
+                                        <input name="i" type="hidden" value="<?= base64_encode($cliente['id']) ?>" class="validate">
 
                                     </div>
                                     <div class="row">

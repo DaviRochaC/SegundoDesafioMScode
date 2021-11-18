@@ -10,27 +10,28 @@ use App\Models\Services\Auth\Middleware;
 use App\Models\Services\Communication\Email;
 
 Middleware::verificaAdminLogado();
-Middleware::verificaAdminMaster('http://localhost/mscode/challengetwo/views/admin/dashboard.php');
-Middleware::verificaCampos($_POST, array('nome', 'cpf', 'email'), 'http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php', 'Todos os campos são obrigatórios');
+Middleware::verificaAdminMaster('/views/admin/dashboard.php');
+Middleware::verificaCampos($_POST, array('nome', 'cpf', 'email'), '/views/admin/cadastrarAdmin.php', 'Todos os campos são obrigatórios!');
 
-if (strlen($_POST['cpf']) != 14) {
-    Middleware::redirecionar('danger', 'CPF inválido', 'http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php');
-}
 
 $adminModel = new Administrador();
 $emailModel = new Email();
 
 $cpf = $adminModel->limpacpf(htmlspecialchars($_POST['cpf']));
 
+if (strlen($cpf) != 11) {
+    Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'CPF inválido');
+}
+
 $emailJaCadastradoNoBanco = $adminModel->busca('email', htmlspecialchars($_POST['email']));
 $cpfJaCadastradoNoBanco =  $adminModel->busca('cpf', $cpf);
 
 if ($emailJaCadastradoNoBanco) {
-    Middleware::redirecionar('danger', 'Já existe um administrador vinculado ao email informado', 'http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php');
+    Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'Já existe um administrador vinculado ao email informado');
 }
 
 if ($cpfJaCadastradoNoBanco) {
-    Middleware::redirecionar('danger', 'Já existe um administrador vinculado ao CPF informado', 'http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php');
+    Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'Já existe um administrador vinculado ao CPF informado');
 }
 
 $senha = $adminModel->gerarSenha(8);
@@ -57,5 +58,5 @@ $conteudoHtml = ob_get_clean();
 $emailEnviado = $emailModel->enviarEmail($admin['email'], $assunto, $conteudoHtml);
 
 if ($emailEnviado) {
-    Middleware::redirecionar('success', 'Administrador cadastrado com sucesso!', 'http://localhost/mscode/challengetwo/views/admin/cadastrarAdmin.php');
+    Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'success', 'Administrador cadastrado com sucesso!');
 }

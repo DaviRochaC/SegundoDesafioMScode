@@ -9,45 +9,37 @@ require_once('../../../../vendor/autoload.php');
 use App\Models\Administrador;
 use App\Models\Services\Auth\Middleware;
 
-$adminModel = new Administrador();
+Middleware::verificaAdminLogado();
 
 if (intval(base64_decode($_POST['i'])) <= 0) {
-    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
-    die();
+    Middleware::redirecionar('/views/admin/dashboard.php', 'danger', 'Ocorreu um erro tente novamente!');
 }
 
-Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), 'http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
+Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacaoSenha'), '/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'Todos os campos são obrigátorios');
+
+
+$adminModel = new Administrador();
 
 $id = intval(base64_decode($_POST['i']));
-
 $admin = $adminModel->busca('id', $id);
 
 if (!$admin) {
-    $_SESSION['danger'] = 'Ocorreu um erro tente novamente!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/dashboard.php');
-    die();
+    Middleware::redirecionar('/views/admin/dashboard.php', 'danger', 'Ocorreu um erro tente novamente!');
 }
 
 if (md5(htmlspecialchars($_POST['senhaAtual'])) != $admin['senha']) {
-    $_SESSION['danger'] = 'Senha atual incorreta!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i']);
-    die();
+    Middleware::redirecionar('/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'danger', 'Senha atual incorreta!');
 }
 
 
 if (md5($_POST['novaSenha']) !=  md5($_POST['confirmacaoSenha'])) {
-    $_SESSION['danger'] = 'A nova senha e a sua confirmação nao conferem!';
-    header('Location:http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i']);
-    die();
+    Middleware::redirecionar('/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'danger', 'A nova senha e a sua confirmação nao conferem!');
 }
 
 $arrayAdmin = [
     'senha' => md5(htmlspecialchars($_POST['novaSenha']))
 ];
 
-$adminModel->update($arrayAdmin, $admin['id']);
+$adminModel->update($arrayAdmin, intval($admin['id']));
 
-$_SESSION['success'] = 'Senha alterada com sucesso!';
-header('Location:http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=' . $_POST['i']);
-die();
+Middleware::redirecionar('/views/admin/password/alterarSenha.php?i=' . $_POST['i'], 'success', 'Senha alterada com sucesso!');
