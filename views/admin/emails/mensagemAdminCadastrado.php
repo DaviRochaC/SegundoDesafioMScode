@@ -1,6 +1,6 @@
 <?php
 
-$messagem = $_SESSION['cadastro_novo_admin'];
+$mensagem = $_SESSION['cadastro_novo_admin'];
 unset($_SESSION['cadastro_novo_admin']);
 
 
@@ -84,7 +84,7 @@ unset($_SESSION['cadastro_novo_admin']);
                       line-height: 25px;
                     ">
                                 <p style="margin: 0; text-align: justify-all;">
-                                    <?= $messagem ?>
+                                    <?= $mensagem ?>
                                 </p>
                             </td>
                         </tr>

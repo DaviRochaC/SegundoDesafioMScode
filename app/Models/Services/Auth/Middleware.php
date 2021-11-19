@@ -46,7 +46,7 @@ class Middleware
         die();
     }
 
-    public static function logout()
+    public static function logout():void
     {
         session_start();
         session_unset();
