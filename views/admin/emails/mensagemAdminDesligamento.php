@@ -129,7 +129,7 @@ unset($_SESSION['desligamento_admin']);
                       font-weight: 400;
                       line-height: 25px;
                     ">
-                                <p style="margin: 0"> Atenciosamente, Ghapic.</p>
+                                <p style="margin: 0"> Atenciosamente, Graphic.</p>
                             </td>
                         </tr>
                     </table>

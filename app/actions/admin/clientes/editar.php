@@ -13,9 +13,10 @@ use App\Models\Services\Auth\Middleware;
 Middleware::verificaAdminLogado();
 
 if (intval(base64_decode($_POST['i'])) <= 0) {
-    Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Ocorreu um erro tente novamente!');
+    Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Ocorreu um erro, tente novamente!');
 }
 
+Middleware::verificaCampos($_POST,array('i'),'/views/admin/clientes/gerenciarClientes.php','Ocorreu um erro, tente novamente!');
 Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), '/views/admin/clientes/editar.php?i=' . $_POST['i'], 'Todos os campos são obrigatórios');
 
 $clienteModel = new Cliente();
