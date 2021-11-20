@@ -20,7 +20,7 @@ session_start();
     <div class="container mt-5 mb-5">
         <div class="d-flex flex row g-0">
             <div class="col-md-6 mt-3">
-                <div class="card card-shadow card1 p-3">
+                <div class="card card1 p-3">
                     <div class="d-flex flex-column">
                         <h2 class="text-center">Bem vindo!</h2>
                     </div>
@@ -39,7 +39,7 @@ session_start();
                             </button>
 
                             <div class="text2 mt-4 d-flex flex-row align-items-center">
-                                <span>Esqueceu a senha?<span class="register"><a class="register" href="#">clique aqui</a></span></span>
+                                <span>Esqueceu a senha?<span class="register"><a class="register" href="http://localhost/mscode/challengetwo/views/admin/password/recuperarSenha.php">clique aqui</a></span></span>
                             </div>
                         </div>
 
@@ -60,7 +60,6 @@ session_start();
     <!--script das mascaras -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript"></script>
 
     <script>
         $(document).ready(function() {

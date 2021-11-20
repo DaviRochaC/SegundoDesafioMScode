@@ -54,4 +54,9 @@ class Administrador
     //entre o tamanho da string senha menos o variavel tamanho
     return substr($senha, rand(0, (strlen($senha) - $tamanho)), $tamanho);
   }
+
+  public static function gerarToken()
+  {
+     return $token = md5(uniqid());
+  }
 }
