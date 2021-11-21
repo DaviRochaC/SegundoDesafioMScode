@@ -48,9 +48,10 @@ $adminModel->create($arrayAdmin);
 $admin = $adminModel->busca('email', $arrayAdmin['email']);
 
 
+
 $assunto = 'Cadastro - Painel Administrativo da Ghapic';
-$_SESSION['cadastro_novo_admin'] = "Olá {$admin['nome']}, segue abaixo sua senha de acesso ao painel administrativo da Graphic.<br><br>
-Senha = $senha";
+$_SESSION['cadastro_novo_admin'] = 'Olá ' . $admin['nome'] . ', segue abaixo sua senha de acesso ao painel administrativo da Graphic.<br><br>
+Senha = ' . $senha;
 
 ob_start();
 include('../../../views/admin/emails/mensagemAdminCadastrado.php');
