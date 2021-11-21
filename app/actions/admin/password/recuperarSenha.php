@@ -15,7 +15,7 @@ Middleware::verificaCampos($_POST, array('cpf'), '/views/admin/password/recupera
 $adminModel = new Administrador();
 $emailModel = new Email();
 
-$cpf = $adminModel->limpaCpf(htmlspecialchars($_POST['cpf']));
+$cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
 
 if (strlen($cpf) != 11) {
     Middleware::redirecionar('/views/admin/password/recuperarSenha.php', 'danger', 'CPF inválido!');

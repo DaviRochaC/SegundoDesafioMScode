@@ -78,7 +78,7 @@ $admins = $adminModel->busca();
                                                 <td><?= $admin['nome'] ?></td>
                                                 <td><?= $admin['email'] ?></td>
 
-                                                <?php $cpf = $adminModel->formataCpf($admin['cpf']) ?>
+                                                <?php $cpf = $adminModel->formataCpfeCnpj($admin['cpf']) ?>
                                                 <td><?= $cpf ?></td>
 
                                                 <td><?= date('d/m/Y H:i', strtotime($admin['criado_em'])) ?></td>

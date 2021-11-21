@@ -43,7 +43,7 @@
 				<a href="#" class="waves-effect waves-dark"><i class="fas fa-usd-circle"></i>Orçamentos</a>
 				<ul class="nav nav-second-level">
 					<li>
-						<a href="#">Second Level Link</a>
+						<a href="http://localhost/mscode/challengetwo/views/admin/orcamentos/novoOrcamento.php">Novo orçamento</a>
 					</li>
 					<li>
 						<a href="#">Second Level Link</a>

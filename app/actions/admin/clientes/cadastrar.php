@@ -15,7 +15,7 @@ Middleware::verificaCampos($_POST, array('nome', 'cpf_cnpj', 'email'), '/views/a
 $clienteModel = new Cliente();
 
 
-$cpfOuCnpj = $clienteModel->limpaCpfeCnpj(htmlspecialchars($_POST['cpf_cnpj']));
+$cpfOuCnpj = $clienteModel->removeMascara(htmlspecialchars($_POST['cpf_cnpj']));
 
 if (strlen($cpfOuCnpj) != 11 AND strlen($cpfOuCnpj) != 14) {
     Middleware::redirecionar('/views/admin/clientes/cadastrar.php', 'danger', 'CPF ou CNPJ inválido');

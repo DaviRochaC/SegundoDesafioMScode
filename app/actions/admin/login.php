@@ -17,7 +17,7 @@ if (strlen($_POST['cpf']) != 14) {
     Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
 }
 
-$cpf = $adminModel->limpacpf(htmlspecialchars($_POST['cpf']));
+$cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
 
 $admin = $adminModel->busca('cpf', $cpf);
 

@@ -30,7 +30,7 @@ if (!$cliente) {
 }
 
 
-$cpfOuCnpj = $clienteModel->limpaCpfeCnpj(htmlspecialchars($_POST['cpf_cnpj']));
+$cpfOuCnpj = $clienteModel->removeMascara(htmlspecialchars($_POST['cpf_cnpj']));
 
 if (strlen($cpfOuCnpj) != 11 and strlen($cpfOuCnpj) != 14) {
     Middleware::redirecionar('/views/admin/clientes/editar.php?i=' . $_POST['i'], 'danger', 'CPF ou CNPJ inválido');

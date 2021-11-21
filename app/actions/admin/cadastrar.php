@@ -17,7 +17,7 @@ Middleware::verificaCampos($_POST, array('nome', 'cpf', 'email'), '/views/admin/
 $adminModel = new Administrador();
 $emailModel = new Email();
 
-$cpf = $adminModel->limpacpf(htmlspecialchars($_POST['cpf']));
+$cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
 
 if (strlen($cpf) != 11) {
     Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'CPF inválido');
