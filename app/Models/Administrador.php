@@ -42,8 +42,4 @@ class Administrador
     return substr($senha, rand(0, (strlen($senha) - $tamanho)), $tamanho);
   }
 
-  public static function gerarToken()
-  {
-     return $token = md5(uniqid());
-  }
 }

@@ -20,9 +20,11 @@ trait Crud
         return $this->db->atualizar($dados, $where);
     }
 
-    public function busca(string $colunaDaTabela = null, mixed $itemDeBusca = null): bool|array
+    public function busca(string $colunaDaTabela = null, string $itemDeBusca = null): bool|array
     {
+
         if ($colunaDaTabela != null and $itemDeBusca != null) {
+
 
             $where = "$colunaDaTabela = '$itemDeBusca'";
 
@@ -34,10 +36,14 @@ trait Crud
                 return false;
             }
         }
-        return $this->db->buscar();
+        if ($colunaDaTabela == null and $itemDeBusca == null) {
+            return $this->db->buscar();
+        }
+
+        return false;
     }
 
-    public function delete( int $id): bool
+    public function delete(int $id): bool
     {
         $where = "id = $id";
         return $this->db->deletar($where);

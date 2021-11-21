@@ -25,12 +25,19 @@ class Middleware
         }
     }
 
-    public static function verificaCampos(array $postOuGet, array $names, string $urlRedirecionamento, string $mensagemError): void
+    public static function verificaCampos(array $postOuGet, array $names, string $urlRedirecionamento, string $mensagemError = null): void
     {
         foreach ($names as $name) {
             if (!isset($postOuGet[$name]) or empty($postOuGet[$name])) {
 
-                self::redirecionar($urlRedirecionamento, 'danger', $mensagemError);
+                if ($urlRedirecionamento != null and $mensagemError != null) {
+                    self::redirecionar($urlRedirecionamento, 'danger', $mensagemError);
+                }
+
+                if ($mensagemError == null) {
+                    self::redirecionar($urlRedirecionamento);
+                }
+                
             }
         }
     }
@@ -46,7 +53,7 @@ class Middleware
         die();
     }
 
-    public static function logout():void
+    public static function logout(): void
     {
         session_start();
         session_unset();

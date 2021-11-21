@@ -14,8 +14,12 @@ Middleware::verificaCampos($_GET, array('i'), '/views/admin/clientes/gerenciarCl
 
 $clienteModel = new Cliente();
 
-$cliente = $clienteModel->busca('id', intval(base64_decode($_GET['i'])));
 
+$cliente = $clienteModel->busca('id', (base64_decode($_GET['i'])));
+
+if (!$cliente) {
+    Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Cliente não encontrado');
+}
 
 
 ?>

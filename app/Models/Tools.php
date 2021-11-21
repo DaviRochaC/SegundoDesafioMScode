@@ -21,4 +21,10 @@ trait Tools
             return $cpfcnpj = substr($cpfcnpj, 0, 2) . '.' . substr($cpfcnpj, 2, 3) . '.' . substr($cpfcnpj, 5, 3) . '/' . substr($cpfcnpj, 8, 4) . '-' . substr($cpfcnpj, 12, 2);
         }
     }
+
+    public static function gerarToken()
+  {
+     return $token = md5(uniqid());
+  }
+
 }

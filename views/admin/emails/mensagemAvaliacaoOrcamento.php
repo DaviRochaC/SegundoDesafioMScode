@@ -1,7 +1,7 @@
 <?php
 
-$mensagem = $_SESSION['desligamento_admin'];
-unset($_SESSION['desligamento_admin']);
+$mensagem = $_SESSION['novo_orcamento'];
+unset($_SESSION['novo_orcamento']);
 
 
 ?>
@@ -12,7 +12,7 @@ unset($_SESSION['desligamento_admin']);
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title> Cadastro novo Administrador</title>
+    <title> Redefiniçaõ de  Administrador</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="" rel="stylesheet" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -65,7 +65,7 @@ unset($_SESSION['desligamento_admin']);
                                 <h1 style="font-size: 48px; font-weight: 400; margin: 2">
 
                                 </h1>
-                                <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Bot%C3%A3o-X-Vermelho-PNG.png" width="125" height="120" style="display: block; border: 0px" />
+                                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/2205848-icone-de-calculo-de-orcamento-gr%C3%A1tis-vetor.jpg" width="125" height="120" style="display: block; border: 0px" />
                             </td>
                         </tr>
                     </table>

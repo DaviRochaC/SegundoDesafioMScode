@@ -6,8 +6,7 @@ session_start();
 require_once('../../../vendor/autoload.php');
 
 use App\Models\Administrador;
-use App\Models\Services\Auth\Middleware;
-use App\Models\Services\Communication\Email;
+use App\Models\Services\{Auth\Middleware, Communication\Email};
 
 
 Middleware::verificaAdminLogado();

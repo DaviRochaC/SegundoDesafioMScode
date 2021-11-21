@@ -7,8 +7,7 @@ session_start();
 require('../../../../vendor/autoload.php');
 
 use App\Models\Administrador;
-use App\Models\Services\Auth\Middleware;
-use App\Models\Services\Communication\Email;
+use App\Models\Services\{Auth\Middleware,Communication\Email};
 
 Middleware::verificaCampos($_POST, array('cpf'), '/views/admin/password/recuperarSenha.php', 'Para prosseguir informe seu CPF!');
 

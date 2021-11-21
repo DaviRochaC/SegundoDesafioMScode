@@ -91,7 +91,7 @@ $clientes = ((new Cliente)->busca());
 
                                         <div class="col s12" style="padding-top: 20px;">
                                             <label>PDF</label>
-                                            <input name="pdf" class="form-control text-dark" type="file" >
+                                            <input name="pdf" class="form-control text-dark" type="file"   accept="application/pdf">
 
                                         </div>
                                     </div>

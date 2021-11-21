@@ -20,7 +20,7 @@ Middleware::verificaCampos($_POST, array('senhaAtual', 'novaSenha', 'confirmacao
 
 $adminModel = new Administrador();
 
-$id = intval(base64_decode($_POST['i']));
+$id = (base64_decode($_POST['i']));
 $admin = $adminModel->busca('id', $id);
 
 if (!$admin) {
