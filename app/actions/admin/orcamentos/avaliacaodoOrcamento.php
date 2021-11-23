@@ -45,10 +45,10 @@ $orcamentoModel->update($arrayOrcamento,$orcamento['id']);
 $orcamentoAtualizado = $orcamentoModel->busca('id',$orcamento['id']);
 $cliente = $clienteModel->busca('id',$orcamentoAtualizado['clientes_id']);
 if(intval($orcamentoAtualizado['status_orcamento_id'])=== 4){
-    Middleware::redirecionar('/views/admin/orcamentos/avaliacaoOrcamento.php?token='.$orcamentoAtualizado['token'], 'danger','Agradecemos a procura da nossa empresa, se desejar solicitar outro orcamento faça contato através de nossas redes sociais ou por um de nossos funcionários!');
+    Middleware::redirecionar('/views/admin/orcamentos/orcamentoRecusado.php?token='.$orcamentoAtualizado['token'],);
 } 
 if(intval($orcamentoAtualizado['status_orcamento_id'])=== 2 ){
-    Middleware::redirecionar('/views/admin/orcamentos/avaliacaoOrcamento.php?token='.$orcamentoAtualizado['token'], 'success',"Olá {$cliente['nome']}, seu orçamento foi enviado para área de faturamento, assim que o mesmo for faturado você sera notificado através de seu e-mail!");
+    Middleware::redirecionar('/views/admin/orcamentos/orcamentoAceito.php?token='.$orcamentoAtualizado['token'],);
 } 
 
 

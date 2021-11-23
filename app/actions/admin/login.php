@@ -13,22 +13,22 @@ Middleware::verificaCampos($_POST, array('cpf', 'password'), '/views/admin/login
 
 $adminModel = new Administrador();
 
-if (strlen($_POST['cpf']) != 14) {
-    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
-}
 
 $cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
 
+if (strlen($cpf) != 11) {
+    Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');
+}
 $admin = $adminModel->busca('cpf', $cpf);
 
 
 if (!$admin) {
-    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
+    Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');
 }
 
 
 if ($admin['senha'] != md5(htmlspecialchars($_POST['password']))) {
-    Middleware::redirecionar('/views/admin/login.php','danger', 'CPF ou senha inválidos!');
+    Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');
 }
 
 $_SESSION['admin'] = [

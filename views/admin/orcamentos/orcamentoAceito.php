@@ -9,11 +9,9 @@ require('../../../vendor/autoload.php');
 use App\Models\{Orcamento, Cliente};
 use App\Models\Services\Auth\Middleware;
 
-Middleware::verificaCampos($_GET, array('token'), '/views/admin/403.php');
+$_SESSION['orcamento_aceito'] = true;
 
-if ((isset($_SESSION['orcamento_aceito']) and $_SESSION['orcamento_aceito'] == true) or (isset($_SESSION['orcamento_recusado']) and $_SESSION['orcamento_recusado'] == true)) {
-    Middleware::redirecionar('/views/admin/403.php');
-}
+Middleware::verificaCampos($_GET, array('token'), '/views/admin/403.php');
 
 $orcamento = ((new Orcamento())->busca('token', $_GET['token']));
 $cliente = ((new Cliente())->busca('id', $orcamento['clientes_id']));
@@ -22,6 +20,8 @@ if (!$orcamento or !$cliente) {
     Middleware::redirecionar('/views/admin/403.php');
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@ if (!$orcamento or !$cliente) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title> Avaliação orçamento </title>
+    <title> Orçamento aceito</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="" rel="stylesheet" />
@@ -37,64 +37,31 @@ if (!$orcamento or !$cliente) {
 
 </head>
 
-<body oncontextmenu="return false" class="snippet-body">
+<body oncontextmenu="return false" class="snippet-body" style="height: 100vh">
     <div class="container mt-5 mb-5">
-        <div class="d-flex flex row g-0">
-            <div class="offset-2 col-md-6 mt-3">
-                <div class="card card1 p-3" style="height:475px; width: 700px;">
-                    <div class="d-flex flex-column">
-                        <h2 class="text-center"> Avaliação do Orcamento</h2>
-                    </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card1 p-3" style="height:250px; width: 700px;">
+                        <div class="row">
+                            <h2 class="text-center">Orcamento Aceito!</h2>
+                        </div>
+                        <div class="text-center">
+                            
+                            <img src="https://suporte.55pbx.com/hc/article_attachments/360002350447/icone_verde.png" width="50" height="50" alt="">
+                        </div>
 
-                    <?php include('../components/alerts.php') ?>
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            <li class="list-group-item">
-                                <strong>Título: </strong><?= $orcamento['titulo'] ?>
-                            </li>
+                        <div class="row pt-4">
+                            <div class="col-12">
+                                <h5 class="text-center">Olá <?=$cliente['nome']?></h5>
+
+                                <p class="text-center">Seu orçamento foi aceito e enviado para área de faturamento, assim que o mesmo for faturado você sera notificado através de seu e-mail. Qualquer duvida entre em contato conosco!</p>
+                            </div>
+
+
                         </div>
 
 
-                    </div>
-
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            <li class="list-group-item">
-                                <strong>Cliente: </strong><?= $cliente['nome'] ?>
-
-                            </li>
-                        </div>
-                    </div>
-
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            <li class="list-group-item">
-
-                                <strong>Valor:</strong> R$ <?= number_format($orcamento['valor_total'], 2, ',', '.') ?>
-
-                            </li>
-                        </div>
-                    </div>
-
-                    <div class="row pt-3">
-                        <div class="col-12">
-                            <li class="list-group-item">
-                                <strong>PDF: </strong>
-                                <a class="btn btn-secondary" href="<?= $orcamento['pdf_url'] ?>" target="_blank">Visualizar PDF</a>
-                            </li>
-                        </div>
-                    </div>
-
-                    <div class="row pt-3">
-
-                        <div class="col-6">
-                            <a class="btn btn-success btn-block" href="../../../app/actions/admin/orcamentos/avaliacaodoOrcamento.php?status=<?= base64_encode(2) ?>&token=<?= $_GET['token'] ?>">Aceitar</a>
-                        </div>
-                        <div class="col-6">
-                            <button class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#motivo">
-                                Rejeitar
-                            </button>
-                        </div>
 
                     </div>
 
@@ -102,7 +69,9 @@ if (!$orcamento or !$cliente) {
             </div>
 
         </div>
+
     </div>
+
 
 
 
