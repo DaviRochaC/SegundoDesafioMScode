@@ -14,4 +14,7 @@ class StatusOrcamento
     }
 
     use Crud;
+
+
+    
 }
