@@ -24,30 +24,37 @@ trait Crud
 
     }
 
-    public function busca(string $colunaDaTabela = null, mixed $itemDeBusca = null, bool $limite  = true): bool|array
+    /**
+     * funcao para realizar buscas no banco de dados
+     * @param string $colunaDaTabela coluna na qual será realizada a consulta.
+     * @param string $itemDeBusca o que será procurado na coluna informada.
+     * @param bool $primeiraLinha define se será buscada apenas a primeira linha correspende ao where ou todos.
+     * @return bool|array 
+     */
+    public function busca(string $colunaDaTabela = null, mixed $itemDeBusca = null, bool $primeiraLinha  = true): bool|array
     {
 
-        if ($colunaDaTabela != null and $itemDeBusca != null) {
+        if ($colunaDaTabela != null and $itemDeBusca != null) { // Verifica se os dois primeiros parametros são diferentes de nulo.
 
 
-            $where = "$colunaDaTabela = '$itemDeBusca'";
+            $where = "$colunaDaTabela = '$itemDeBusca'";   // Monta o where com os valores passados.
 
-            $busca = $this->db->buscar($where);
+            $busca = $this->db->buscar($where);   // Realiza a busca no banco de dados de acordo com o where e armazena na variavel.
 
-            if (count($busca) > 0) {
-                if ($limite) {
-                    return $busca[0];
+            if (count($busca) > 0) {  // Verifica quantidade de linhas retornadas.
+                if ($primeiraLinha) { // Verifica se o paramentro $primeiraLinha é verdadeiro.
+                    return $busca[0]; // Retorna primeira linha da busca de acordo com where passado.
                 }
-                return $busca;
+                return $busca;  // Retorna todas as linhas correspondente ao  where passado.
             } else {
-                return false;
+                return false; // Retorna falso
             }
         }
-        if ($colunaDaTabela == null and $itemDeBusca == null) {
-            return $this->db->buscar();
+        if ($colunaDaTabela == null and $itemDeBusca == null) { // Verifica se os dois primeiros parametros são nulos.
+            return $this->db->buscar();   // Retorna a busca no banco de dados sem where especifico, nesse caso especifico vai retornar todas as linhas de determinada tabela.
         }
 
-        return false;
+        return false; // Retorna falso, esse retorno ira acontecer quando um dos dois primeiros parametros é nulo e o outro não.
     }
 
     public function delete(int $id): bool

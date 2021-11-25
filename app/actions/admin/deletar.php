@@ -28,7 +28,7 @@ $admin = $adminModel->busca('id', $id);
 $adminModel->delete(intval($admin['id']));
 
 
-$assunto = 'Desligamento - Painel Administrativo da Ghapic';
+$assunto = 'Desligamento - Painel Administrativo da Graphic';
 $_SESSION['desligamento_admin'] = 'Olá ' . $admin['nome'] . ',infelizmente sua conta desativada e você perdeu acesso ao painel administrativo da Graphic.';
 
 ob_start();

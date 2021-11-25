@@ -122,8 +122,10 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
             <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p>
         </footer>
     </div>
+    <!-- /. PAGE INNER  -->
+    <!-- /. PAGE WRAPPER  -->
+    <!-- /. WRAPPER  -->
 
-    <!-- Button trigger modal -->
 
     <?php foreach ($orcamentos as $orcamento) { ?>
         <!-- Modal -->
@@ -131,7 +133,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Motivo do cancelamento</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -156,18 +158,14 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
             </div>
         </div>
     <?php } ?>
-    <!-- /. PAGE INNER  -->
-    <!-- /. PAGE WRAPPER  -->
-    <!-- /. WRAPPER  -->
+
+
+
+
+
+    
     <!-- JS Scripts-->
-
-
-
-
-
-
-
-
+    
     <!-- jQuery Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

@@ -37,7 +37,7 @@ $adminModel->update($arrayAdmin, intval($admin['id']));
 
 
 //refazer esse codigo  daqui pra baixo
-$assunto = 'Recuperar senha - Painel Administrativo da Ghapic';
+$assunto = 'Recuperar senha - Painel Administrativo da Graphic';
 
 $_SESSION['recuperar_senha_admin'] = "Olá {$admin['nome']}, um pedido de redefinição de senha foi solicitado para a sua conta 
  {$admin['email']} no Painel administrativo da Graphic. Para confirmar este pedido e definir uma nova senha para sua conta, por favor, clique no link abaixo: <br><br> 

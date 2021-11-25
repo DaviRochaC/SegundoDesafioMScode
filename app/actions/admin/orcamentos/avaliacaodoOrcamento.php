@@ -30,8 +30,6 @@ if (intval($statusOrcamento['id']) === 4) {
 }
 
 
-//todo token receber nulo e fazer uma pagina para cada uma das opcoes rejeitar ou aceitar
-
 $token = $orcamentoModel->gerarToken();
 
 $arrayOrcamento = [

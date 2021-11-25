@@ -2,9 +2,8 @@
 
 ini_set('display_errors', true);
 error_reporting(E_ALL);
-
-
 session_start();
+
 require_once('../../../vendor/autoload.php');
 
 use App\Models\{Orcamento, Cliente, StatusOrcamento};
@@ -94,10 +93,12 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
 
                                                 <td class="center"><?= $status['nome'] ?></td>
 
-                                                <td class="center"><?= date('d/m/Y',strtotime($orcamento['editado_em'])) ?></td>
+                                                <td class="center"><?= date('d/m/Y', strtotime($orcamento['editado_em'])) ?></td>
 
-                                                <td class="center"><a class="btn btn-success" href="#">Faturar</a>
-                                                    <a class="btn btn-danger" href="#">Cancelar</a>
+                                                <td class="center"><a class="btn btn-success" href="../../../app/actions/admin/orcamentos/faturarOrcamento.php?token=<?= $orcamento['token'] ?>">Faturar</a>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
+                                                        Cancelar
+                                                    </button>
                                                 </td>
 
 
@@ -129,15 +130,42 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
     </div>
     <!-- /. PAGE WRAPPER  -->
     <!-- /. WRAPPER  -->
+
+
+
+    <?php foreach ($orcamentos as $orcamento) { ?>
+        <!-- Modal -->
+        <div class="modal fade" id="cancelar<?= $orcamento['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Informe o motivo do cancelamento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form  method="POST" action="../../../app/actions/admin/orcamentos/cancelarOrcamento.php">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label">Motivo</label>
+                                    <input class="form-control" type="text" name="motivo">
+
+                                    <input type="hidden" name="token" value="<?= $orcamento['token'] ?>">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Cancelar Orcamento</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
     <!-- JS Scripts-->
-
-
-
-
-
-
-
-
     <!-- jQuery Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
