@@ -15,6 +15,6 @@
 			<li><a href="http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=<?= base64_encode($_SESSION['admin']['id'])?>"><i class="fas fa-unlock"></i> Alterar Senha </a>
 			</li>
 			<li>
-				<a href="http://localhost/mscode/challengetwo/app/actions/admin/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+				<a href="http://localhost/mscode/challengetwo/app/actions/admin/logout.php"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
 			</li>
 		</ul>
