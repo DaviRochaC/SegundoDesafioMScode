@@ -78,10 +78,7 @@ $admins = $adminModel->busca();
                                             <tr class="odd gradeX">
                                                 <td><?= $admin['nome'] ?></td>
                                                 <td><?= $admin['email'] ?></td>
-
-                                                <?php $cpf = $adminModel->formataCpfeCnpj($admin['cpf']) ?>
-                                                <td><?= $cpf ?></td>
-
+                                                <td><?= $adminModel->formataCpfeCnpj($admin['cpf']) ?></td>
                                                 <td><?= date('d/m/Y H:i', strtotime($admin['criado_em'])) ?></td>
                                                 <td><a class="btn btn-danger" href="http://localhost/mscode/challengetwo/app/actions/admin/deletar.php?i='.<?= base64_encode($admin['id']) ?>">Deletar</a></td>
                                             </tr>
@@ -144,7 +141,12 @@ $admins = $adminModel->busca();
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
-            $('#dataTables-example').dataTable();
+            $('#dataTables-example').dataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'
+                },
+            });
+
         });
     </script>
     <!-- Custom Js -->

@@ -73,6 +73,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
                                         <tr>
                                             <th class="center">Titulo</th>
                                             <th class="center">Cliente</th>
+                                            <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
                                             <th class="center">status</th>
                                             <th class="center">Motivo</th>
@@ -87,6 +88,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
                                                 <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
 
                                                 <td class="center"><?= $cliente['nome'] ?></td>
+                                                <td class="center"><?= $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
 
                                                 <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
                                                 <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
@@ -163,9 +165,9 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
 
 
 
-    
+
     <!-- JS Scripts-->
-    
+
     <!-- jQuery Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -190,7 +192,11 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
-            $('#dataTables-example').dataTable();
+            $('#dataTables-example').dataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'
+                },
+            });
         });
     </script>
     <!-- Custom Js -->

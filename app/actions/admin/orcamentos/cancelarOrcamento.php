@@ -3,16 +3,29 @@ ini_set('display_errors', true);
 error_reporting(E_ALL);
 session_start();
 
-
 require_once('../../../../vendor/autoload.php');
 
 
 use App\Models\{Orcamento, StatusOrcamento, Cliente};
 use App\Models\Services\{Auth\Middleware, Communication\Email};
 
+
 Middleware::verificaAdminLogado();
-Middleware::verificaCampos($_POST, array('token'), '/views/admin/orcamentos/listarOrcamentosAceitos.php', 'Orcamento nao encontrado!');
-Middleware::verificaCampos($_POST, array('motivo'), '/views/admin/orcamentos/listarOrcamentosAceitos.php', 'Informe o motivo do cancelamento!');
+Middleware::verificaCampos($_GET, array('pag'), '/views/admin/dashboard.php', 'Ocorreu um erro, tente novamente!');
+
+
+
+if (intval(htmlspecialchars($_GET['pag'])) === 1) {
+    $urlRedirecionamento = '/views/admin/orcamentos/listarOrcamentosCriados.php';
+} elseif (intval(htmlspecialchars($_GET['pag'])) === 2) {
+    $urlRedirecionamento = '/views/admin/orcamentos/listarOrcamentosAceitos.php';
+} else {
+    Middleware::redirecionar('/views/admin/dashboard.php', 'danger', 'Ocorreu um erro tente novamente!');
+}
+
+
+Middleware::verificaCampos($_POST, array('token'), $urlRedirecionamento, 'Orcamento nao encontrado!');
+Middleware::verificaCampos($_POST, array('motivo'), $urlRedirecionamento, 'Informe o motivo do cancelamento!');
 
 $orcamentoModel = new Orcamento();
 $statusOrcamentoModel = new StatusOrcamento();
@@ -25,7 +38,7 @@ $statusOrcamento = $statusOrcamentoModel->busca('id', 3);
 
 if (!$statusOrcamento or !$orcamento) {
     die('aqui');
-    Middleware::redirecionar('/views/admin/orcamentos/listarOrcamentosAceitos.php', 'danger', 'Ocorreu um erro, tente novamente!');
+    Middleware::redirecionar($urlRedirecionamento, 'danger', 'Ocorreu um erro, tente novamente!');
 }
 
 $token = $orcamentoModel->gerarToken();
@@ -52,5 +65,5 @@ $conteudoHtml = ob_get_clean();
 $emailEnviado = $emailModel->enviarEmail($cliente['email'], $assunto, $conteudoHtml);
 
 if ($emailEnviado) {
-    Middleware::redirecionar('/views/admin/orcamentos/listarOrcamentosAceitos.php', 'success', 'Orçamento cancelado com sucesso!');
+    Middleware::redirecionar($urlRedirecionamento, 'success', 'Orçamento cancelado com sucesso!');
 }

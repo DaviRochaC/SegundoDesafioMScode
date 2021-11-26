@@ -66,6 +66,7 @@ $clientes = $clienteModel->busca();
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>CPF/CNPJ</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -76,7 +77,7 @@ $clientes = $clienteModel->busca();
 
                                                 <?php $cpfOucnpj = $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']) ?>
                                                 <td><?= $cpfOucnpj ?></td>
-                                                <td><a class="btn btn-primary" href="http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i='.<?=base64_encode($cliente['id'])?>">Editar</a></td>
+                                                <td><a class="btn btn-primary" href="http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i='.<?= base64_encode($cliente['id']) ?>">Editar</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -111,37 +112,42 @@ $clientes = $clienteModel->busca();
 
 
 
-    
-
-        <!-- jQuery Js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <!-- Bootstrap Js -->
-        <script src="../assets/js/bootstrap.min.js"></script>
-
-        <script src="../assets/materialize/js/materialize.min.js"></script>
-
-        <!-- Metis Menu Js -->
-        <script src="../assets/js/jquery.metisMenu.js"></script>
-        <!-- Morris Chart Js -->
-        <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
-        <script src="../assets/js/morris/morris.js"></script>
 
 
-        <script src="../assets/js/easypiechart.js"></script>
-        <script src="../assets/js/easypiechart-data.js"></script>
+    <!-- jQuery Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="../assets/js/Lightweight-Chart/jquery.chart.js"></script>
-        <!-- DATA TABLE SCRIPTS -->
-        <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
-        <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').dataTable();
+    <!-- Bootstrap Js -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+
+    <script src="../assets/materialize/js/materialize.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="../assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../assets/js/morris/morris.js"></script>
+
+
+    <script src="../assets/js/easypiechart.js"></script>
+    <script src="../assets/js/easypiechart-data.js"></script>
+
+    <script src="../assets/js/Lightweight-Chart/jquery.chart.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'
+                },
             });
-        </script>
-        <!-- Custom Js -->
-        <script src="../assets/js/custom-scripts.js"></script>
+
+        });
+    </script>
+    <!-- Custom Js -->
+    <script src="../assets/js/custom-scripts.js"></script>
 
 
 </body>

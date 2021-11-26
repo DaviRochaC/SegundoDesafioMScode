@@ -73,6 +73,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                         <tr>
                                             <th class="center">Titulo</th>
                                             <th class="center">Cliente</th>
+                                            <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
                                             <th class="center">status</th>
                                             <th class="center">Ações</th>
@@ -87,6 +88,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                                 <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
 
                                                 <td class="center"><?= $cliente['nome'] ?></td>
+                                                <td class="center"><?= $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
 
                                                 <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
                                                 <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
@@ -94,7 +96,9 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                                 <td class="center"><?= $status['nome'] ?></td>
 
                                                 <td class="center"><a class="btn btn-primary" href="#">Enviar Email</a>
-                                                    <a class="btn btn-danger" href="#">Cancelar Orçamento</a>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
+                                                        Cancelar
+                                                    </button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -124,6 +128,38 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
     <!-- /. PAGE WRAPPER  -->
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
+
+    <?php foreach ($orcamentos as $orcamento) { ?>
+        <!-- Modal -->
+        <div class="modal fade" id="cancelar<?= $orcamento['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Informe o motivo do cancelamento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="../../../app/actions/admin/orcamentos/cancelarOrcamento.php?pag=1">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="form-label">Motivo</label>
+                                    <input class="form-control" type="text" name="motivo">
+
+                                    <input type="hidden" name="token" value="<?= $orcamento['token'] ?>">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Cancelar Orcamento</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
 
 
@@ -156,7 +192,12 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function() {
-            $('#dataTables-example').dataTable();
+            $('#dataTables-example').dataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json'
+                },
+            });
+
         });
     </script>
     <!-- Custom Js -->
