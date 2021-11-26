@@ -17,7 +17,7 @@ Middleware::verificaCampos($_POST, array('nome', 'cpf', 'email'), '/views/admin/
 $adminModel = new Administrador();
 $emailModel = new Email();
 
-$cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
+$cpf = Administrador::removeMascara(htmlspecialchars($_POST['cpf']));
 
 if (strlen($cpf) != 11) {
     Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'CPF inválido');
@@ -34,7 +34,7 @@ if ($cpfJaCadastradoNoBanco) {
     Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'Já existe um administrador vinculado ao CPF informado');
 }
 
-$senha = $adminModel->gerarSenha(8);
+$senha = Administrador::gerarSenha(8);
 
 $arrayAdmin = [
     'nome' => htmlspecialchars($_POST['nome']),

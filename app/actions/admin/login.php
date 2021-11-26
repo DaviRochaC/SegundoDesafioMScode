@@ -14,7 +14,7 @@ Middleware::verificaCampos($_POST, array('cpf', 'password'), '/views/admin/login
 $adminModel = new Administrador();
 
 
-$cpf = $adminModel->removeMascara(htmlspecialchars($_POST['cpf']));
+$cpf = Administrador::removeMascara(htmlspecialchars($_POST['cpf']));
 
 if (strlen($cpf) != 11) {
     Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');

@@ -74,9 +74,7 @@ $clientes = $clienteModel->busca();
                                             <tr class="odd gradeX">
                                                 <td><?= $cliente['nome'] ?></td>
                                                 <td><?= $cliente['email'] ?></td>
-
-                                                <?php $cpfOucnpj = $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']) ?>
-                                                <td><?= $cpfOucnpj ?></td>
+                                                <td><?= Cliente::formataCpfeCnpj($cliente['cpf_cnpj']) ?></td>
                                                 <td><a class="btn btn-primary" href="http://localhost/mscode/challengetwo/views/admin/clientes/editar.php?i='.<?= base64_encode($cliente['id']) ?>">Editar</a></td>
                                             </tr>
                                         <?php } ?>

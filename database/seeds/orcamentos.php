@@ -16,7 +16,7 @@ $clientes = $clienteModel->busca();
 
 foreach($clientes as $cliente){
 
-    $token = $orcamentoModel->gerarToken();
+    $token = Orcamento::gerarToken();
 
     $arrayOrcamento = [
         'titulo' => "Orcamento {$cliente['id']}",

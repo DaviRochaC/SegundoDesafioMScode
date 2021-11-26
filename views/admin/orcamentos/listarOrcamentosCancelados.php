@@ -88,7 +88,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 3, false);
                                                 <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
 
                                                 <td class="center"><?= $cliente['nome'] ?></td>
-                                                <td class="center"><?= $clienteModel->formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
+                                                <td class="center"><?= Cliente::formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
 
                                                 <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
                                                 <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>

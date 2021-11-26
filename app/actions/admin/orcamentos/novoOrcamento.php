@@ -6,8 +6,8 @@ session_start();
 require_once('../../../../vendor/autoload.php');
 
 
-use App\Models\{Orcamento,StatusOrcamento,Cliente};
-use App\Models\Services\{Auth\Middleware,Communication\Email};
+use App\Models\{Orcamento, StatusOrcamento, Cliente};
+use App\Models\Services\{Auth\Middleware, Communication\Email};
 
 
 Middleware::verificaAdminLogado();
@@ -43,9 +43,9 @@ $urlPdf = "http://localhost/mscode/challengetwo/views/pdf/{$_FILES['pdf']['name'
 
 $statusOrcamento = $statusOrcamentoModel->busca('id', 1);
 $cliente = $clienteModel->busca('id', intval($_POST['clientes_id']));
-$valor = $orcamentoModel->removeMascara(htmlspecialchars($_POST['valor']));
+$valor = Orcamento::removeMascara(htmlspecialchars($_POST['valor']));
 $valor = doubleval($valor) / 100;
-$token = $orcamentoModel->gerarToken();
+$token = Orcamento::gerarToken();
 $arrayOrcamento = [
     'titulo' => htmlspecialchars($_POST['titulo']),
     'pdf_url' => $urlPdf,

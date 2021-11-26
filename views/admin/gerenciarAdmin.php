@@ -78,7 +78,7 @@ $admins = $adminModel->busca();
                                             <tr class="odd gradeX">
                                                 <td><?= $admin['nome'] ?></td>
                                                 <td><?= $admin['email'] ?></td>
-                                                <td><?= $adminModel->formataCpfeCnpj($admin['cpf']) ?></td>
+                                                <td><?= Administrador::formataCpfeCnpj($admin['cpf']) ?></td>
                                                 <td><?= date('d/m/Y H:i', strtotime($admin['criado_em'])) ?></td>
                                                 <td><a class="btn btn-danger" href="http://localhost/mscode/challengetwo/app/actions/admin/deletar.php?i='.<?= base64_encode($admin['id']) ?>">Deletar</a></td>
                                             </tr>

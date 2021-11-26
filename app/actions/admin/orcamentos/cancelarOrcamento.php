@@ -40,7 +40,7 @@ if (!$statusOrcamento or !$orcamento) {
     Middleware::redirecionar($urlRedirecionamento, 'danger', 'Ocorreu um erro, tente novamente!');
 }
 
-$token = $orcamentoModel->gerarToken();
+$token = Orcamento::gerarToken();
 
 $arrayOrcamento = [
     'motivo_status_orcamento' => htmlspecialchars($_POST['motivo']),

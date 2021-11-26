@@ -30,7 +30,7 @@ if (intval($statusOrcamento['id']) === 4) {
 }
 
 
-$token = $orcamentoModel->gerarToken();
+$token = Orcamento::gerarToken();
 
 $arrayOrcamento = [
     'token' => $token,
