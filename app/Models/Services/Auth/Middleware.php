@@ -10,7 +10,10 @@ class Middleware
 
 {
 
-
+    /**
+     * Função de verificação para a informação sobre o efetuamento do login do usuario Administrador.
+     * @return void
+     */
     public static function verificaAdminLogado(): void
     {
         if ((!isset($_SESSION['admin']['logado'])) or (!$_SESSION['admin']['logado'])) {
@@ -18,6 +21,11 @@ class Middleware
         }
     }
 
+
+    /**
+     * Função de verificação sobre a hierarquia do administrador. Se o mesmo é administrador comum ou do tipo Master.
+     * @return void
+     */
     public static function verificaAdminMaster(string $urlRedirecionamento): void
     {
         if ((!isset($_SESSION['admin']['admin_master'])) or ($_SESSION['admin']['admin_master'] != true)) {
@@ -37,11 +45,17 @@ class Middleware
                 if ($mensagemError == null) {
                     self::redirecionar($urlRedirecionamento);
                 }
-                
             }
         }
     }
 
+    /**
+     * Função para realizar redirecionamentos na aplicação.
+     * @param string $urlRedirecionamento Endereço da página para onde deseja redirecionar.
+     * @param string $nomeSession Nome da sessão que deseja iniciar.   ex:$_SESSION['danger'] ou $_SESSION['success'].
+     * @param string $mensagem Mensagem da sessão iniciada.
+     * @return void
+     */
     public static function redirecionar(string $urlRedirecionamento, string $nomeSession = null, string $mensagem = null): void
     {
         $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');
@@ -53,6 +67,11 @@ class Middleware
         die();
     }
 
+
+    /**
+     * Função para sair da aplicação.
+     * @return void
+     */
     public static function logout(): void
     {
         session_start();

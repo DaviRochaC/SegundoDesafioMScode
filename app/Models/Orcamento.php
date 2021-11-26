@@ -16,23 +16,26 @@ class Orcamento
   }
 
   use Crud;
-  
+
   use Tools;
 
 
-
-  public static function verificaFileSetado($file, $tamanhoDofile)
+  /**
+   * Função para verificar se um arquivo foi setado.
+   * @param string $nomeArquivo Nome do arquivo.
+   * @param int $tamanhoArquivo Tamanho do arquivo.
+   * @return bool
+   */
+  public static function verificaArquivoSetado( string $nomeArquivo, int $tamanhoArquivo): bool
   {
-    if (!isset($file) or empty($file)) {
-      return false;
+    if (!isset($nomeArquivo) or empty($nomeArquivo)) {  // Verifica se o parâmetro $nomeArquivo é nulo ou vazio.
+      return false;       // Retorna falso.
     }
 
-    if (intval($tamanhoDofile) <= 0) {
-      return false;
+    if (intval($tamanhoArquivo) <= 0) {  // Verifica se o valor inteiro do  parâmetro $tamanhoArquivo é menor ou igual a zero.
+      return false; // Retorna falso.
     }
 
-    return true;
+    return true;  // Retorna verdadeiro.
   }
-
-
 }

@@ -12,7 +12,7 @@ use App\Models\Services\{Auth\Middleware, Communication\Email};
 
 Middleware::verificaAdminLogado();
 Middleware::verificaCampos($_POST, array('titulo', 'valor', 'clientes_id'), '/views/admin/orcamentos/novoOrcamento.php', 'Todos os campos são obrigátorios!');
-$pdfSetado = Orcamento::verificaFileSetado($_FILES['pdf']['name'], $_FILES['pdf']['size']);
+$pdfSetado = Orcamento::verificaArquivoSetado($_FILES['pdf']['name'], $_FILES['pdf']['size']);
 
 $statusOrcamentoModel = new StatusOrcamento();
 $orcamentoModel = new Orcamento();
