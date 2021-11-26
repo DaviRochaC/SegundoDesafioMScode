@@ -95,7 +95,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
 
                                                 <td class="center"><?= $status['nome'] ?></td>
 
-                                                <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?=$orcamento['token']?>">Enviar Email</a>
+                                                <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?=$orcamento['token']?>">Reenviar Email</a>
                                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
                                                         Cancelar
                                                     </button>
