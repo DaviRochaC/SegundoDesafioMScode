@@ -1,7 +1,7 @@
 <?php
 
-$mensagem = $_SESSION['orcamento_cancelado'];
-unset($_SESSION['orcamento_cancelado']);
+$mensagem =$_SESSION['orcamento_resposta_pendente'];
+unset($_SESSION['orcamento_resposta_pendente']);
 
 
 ?>
@@ -12,7 +12,7 @@ unset($_SESSION['orcamento_cancelado']);
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title> Orçamento cancelado</title>
+    <title>Orçamento pendente</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="" rel="stylesheet" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -65,7 +65,7 @@ unset($_SESSION['orcamento_cancelado']);
                                 <h1 style="font-size: 48px; font-weight: 400; margin: 2">
 
                                 </h1>
-                                <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/08/Bot%C3%A3o-X-Vermelho-PNG.png" width="125" height="120" style="display: block; border: 0px" />
+                                <img src="https://media.istockphoto.com/vectors/exclamation-mark-sign-icon-attention-speech-bubble-symbol-round-11-vector-id1200536948?k=20&m=1200536948&s=170667a&w=0&h=i9PR9bW3n8PetuvleDFRFLwEDvDT2sMdncNFvGdflks=" width="125" height="120" style="display: block; border: 0px" />
                             </td>
                         </tr>
                     </table>

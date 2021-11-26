@@ -37,7 +37,6 @@ $statusOrcamento = $statusOrcamentoModel->busca('id', 3);
 
 
 if (!$statusOrcamento or !$orcamento) {
-    die('aqui');
     Middleware::redirecionar($urlRedirecionamento, 'danger', 'Ocorreu um erro, tente novamente!');
 }
 
