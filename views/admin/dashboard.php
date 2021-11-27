@@ -140,7 +140,7 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 								</canvas>
 							</div>
 							<div class="card-action">
-								<b> Orçamentos Enviados X Orçamentos Respondidos</b>
+								<b> Orçamentos Respondidos X Orçamentos não Respondidos</b>
 							</div>
 
 						</div>
@@ -197,8 +197,8 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 					label: "Orcamentos",
 					data: [<?= $orcamentosAceitos + $orcamentosFaturados ?>, <?= $orcamentosRejeitados ?>],
 					backgroundColor: [
-						'rgb(34,139,34)',
-						'rgb(255,5,5)',
+						'#42A5FF',
+						'#274EA2'
 					],
 					hoverOffset: 4
 				}]
@@ -222,8 +222,8 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 					label: "Orcamentos",
 					data: [<?= $orcamentosRespondidos ?>, <?= $orcamentosSemResposta ?>],
 					backgroundColor: [
-						'rgb(255,255,0)',
-						'rgb(54, 162, 235)',
+						'#B64B9B',
+						'#f75b97',
 					],
 					hoverOffset: 4
 				}]

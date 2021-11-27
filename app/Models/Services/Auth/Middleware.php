@@ -67,8 +67,8 @@ class Middleware
      */
     public static function redirecionar(string $urlRedirecionamento, string $nomeSession = null, string $mensagem = null): void
     {
-        $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');
-        $dotenv->load();
+        $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');    //Instancia da classe Dotenv especificando o caminho do arquivo .env     
+        $dotenv->load();    // Faz a leitura do arquivo .env
         if ($nomeSession != null and $mensagem != null) { // Verificando se os dois ultimos parametros são diferentes de nulo.
             $_SESSION[$nomeSession] = $mensagem;  // Liga uma sessão com o nome passado no segundo parâmetro, na qual recebe uma mensagem passada no terceiro parâmetro.
         }
