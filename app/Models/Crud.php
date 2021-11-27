@@ -43,7 +43,7 @@ trait Crud
     {
 
         if ($colunaDaTabela != null and $itemDeBusca != null) { // Verifica se os dois primeiros parâmetros são diferentes de nulo.
-
+              
 
             $where = "$colunaDaTabela = '$itemDeBusca'";   // Monta o where com os valores passados.
 

@@ -22,7 +22,7 @@ session_start();
             <div class="offset-3 col-md-6 mt-3">
                 <div class="card  card1 p-3" style="width: 650px; height: 265px;">
                     <div class="d-flex flex-column">
-                        <h2 class="text-center">Informe seu CPF:</h2>
+                        <h2 class="text-center text-white">Informe seu CPF:</h2>
                     </div>
 
                     <?php include('../components/alerts.php') ?>
@@ -32,7 +32,7 @@ session_start();
                             <span>CPF</span>
                             <input type="text" name="cpf" class="form-control cpf" maxlength="14">
 
-                            <button type="submit" class="mt-3  btn btn-dark"> Enviar
+                            <button type="submit" class="mt-3  btn btn-secondary"> Enviar
                             </button>
 
                     </form>

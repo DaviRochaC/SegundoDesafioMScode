@@ -29,7 +29,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
             <div class="offset-3 col-md-6 mt-3">
                 <div class="card card1 p-3" style=" height: 300px">
                     <div class="d-flex flex-column">
-                        <h2 class="text-center">Redefinir Senha</h2>
+                        <h2 class="text-center text-white">Redefinir Senha</h2>
                     </div>
 
                     <?php include('../components/alerts.php') ?>
@@ -44,7 +44,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
 
                             <input type="hidden" name="token" value="<?= $_GET['token']?>">
 
-                            <button type="submit" class="mt-3 btn btn-dark"> Login
+                            <button type="submit" class="mt-3 btn btn-secondary"> Redefinir
                             </button>
 
 

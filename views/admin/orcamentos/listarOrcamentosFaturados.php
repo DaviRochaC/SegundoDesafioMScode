@@ -75,7 +75,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id',5, false);
                                             <th class="center">Cliente</th>
                                             <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
-                                            <th class="center">status</th>
+                                            <th class="center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
