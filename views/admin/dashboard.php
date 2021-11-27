@@ -11,10 +11,20 @@ use App\Models\Services\Auth\Middleware;
 Middleware::verificaAdminLogado();
 
 $orcamentoModel = new Orcamento();
-$orcamentosFaturados = $orcamentoModel->busca('status_orcamento_id', 5, false);
-$orcamentosSemResposta = $orcamentoModel->busca('status_orcamento_id', 1, false);
-$orcamentosCancelados = $orcamentoModel->busca('status_orcamento_id', 3, false);
-$orcamentosRejeitados = $orcamentoModel->busca('status_orcamento_id', 4, false);
+
+$orcamentosTotal = count($orcamentoModel->busca());
+$orcamentosAceitos = count($orcamentoModel->busca('status_orcamento_id', 2, false));
+$orcamentosFaturados = count($orcamentoModel->busca('status_orcamento_id', 5, false));
+$orcamentosSemResposta = count($orcamentoModel->busca('status_orcamento_id', 1, false));
+$orcamentosCancelados = count($orcamentoModel->busca('status_orcamento_id', 3, false));
+$orcamentosRejeitados = count($orcamentoModel->busca('status_orcamento_id', 4, false));
+$orcamentosRespondidos = $orcamentosTotal - $orcamentosSemResposta;
+
+$porcentagemOrçamentosFaturados = round(($orcamentosFaturados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosSemResposta = round(($orcamentosSemResposta / $orcamentosTotal) * 100);
+$porcentagemOrçamentosCancelados = round(($orcamentosCancelados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosRejeitados = round(($orcamentosRejeitados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) * 100);
 
 ?>
 
@@ -56,105 +66,107 @@ $orcamentosRejeitados = $orcamentoModel->busca('status_orcamento_id', 4, false);
 				</h1>
 
 			</div>
+
 			<div id="page-inner">
 
-				<!-- /. ROW  -->
+
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<div class="cirStats">
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="card-panel text-center">
-										<h4> Orçamento faturados</h4>
-										<span class="percent easypiechart"> TOTAL = <?= count($orcamentosFaturados) ?></span>
+										<h4>Orçamentos Faturados</h4><br>
+										<h4>Total = <?= $orcamentosFaturados ?> </h4>
+
+										<div class="easypiechart" id="easypiechart-blue" data-percent="<?= $porcentagemOrçamentosFaturados ?>"><span class="percent">%<?= $porcentagemOrçamentosFaturados ?></span>
+										</div>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="card-panel text-center">
-										<h4>Orçamento sem resposta</h4>
-										<span class="percent easypiechart"> TOTAL = <?= count($orcamentosSemResposta) ?></span>
+										<h4>Orçamentos Sem resposta</h4><br>
+										<h4>Total = <?= $orcamentosSemResposta ?> </h4>
+
+										<div class="easypiechart" id="easypiechart-red" data-percent="<?= $porcentagemOrçamentosSemResposta ?>"><span class="percent">%<?= $porcentagemOrçamentosSemResposta ?></span>
+										</div>
 									</div>
 								</div>
 							</div>
-
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="card-panel text-center">
-										<h4>Orçamento cancelados</h4>
-										<span class="percent easypiechart"> TOTAL = <?= count($orcamentosCancelados) ?></span>
+										<h4>Orçamentos Cancelados</h4><br>
+										<h4>Total = <?= $orcamentosCancelados ?></h4>
+										<div class="easypiechart" id="easypiechart-teal" data-percent="<?= $porcentagemOrçamentosCancelados ?>"><span class="percent">%<?= $porcentagemOrçamentosCancelados ?></span>
+										</div>
 									</div>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-6">
 									<div class="card-panel text-center">
-										<h4>Orçamento rejeitados</h4>
-										<span class="percent easypiechart"> TOTAL = <?= count($orcamentosRejeitados) ?></span>
+										<h4>Orçamentos Rejeitados</h4><br>
+										<h4>Total = <?= $orcamentosRejeitados ?> </h4>
+										<div class="easypiechart" id="easypiechart-orange" data-percent="<?= $porcentagemOrçamentosRejeitados ?>"><span class="percent">%<?= $porcentagemOrçamentosRejeitados ?></span>
+										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
-
-
-
 					</div>
+					<!--/.row-->
 				</div>
-			</div>
-			<!--/.row-->
-			<div class="col-xs-12 col-sm-12 col-md-5">
+
+
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-lg-6 col-sm-12">
 						<div class="card">
-							<div class="card-image donutpad">
-								<div id="morris-donut-chart"></div>
+
+							<div class="card-image">
+								<canvas class="grafico1">
+								</canvas>
 							</div>
 							<div class="card-action">
-								<b>Donut Chart Example</b>
+								<b> Orçamentos Aceitos X Orçamentos Rejeitados</b>
 							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-6 col-sm-12">
+						<div class="card">
+
+							<div class="card-image">
+								<canvas class="grafico2">
+								</canvas>
+							</div>
+							<div class="card-action">
+								<b> Orçamentos Enviados X Orçamentos Respondidos</b>
+							</div>
+
 						</div>
 					</div>
 				</div>
+				<!-- /. ROW  -->
+
+
+
+
+
+
 			</div>
-			<!--/.row-->
+			<!-- /. ROW  -->
+
+
+
+
+
+			<footer>
+				<p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p>
+
+
+			</footer>
 		</div>
-
-
-		<div class="row">
-			<div class="col-md-5">
-				<div class="card">
-					<div class="card-image">
-						<div id="morris-line-chart"></div>
-					</div>
-					<div class="card-action">
-						<b>Line Chart</b>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col-md-7">
-				<div class="card">
-					<div class="card-image">
-						<div id="morris-bar-chart"></div>
-					</div>
-					<div class="card-action">
-						<b> Bar Chart Example</b>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!-- /. ROW  -->
-
-
-
-
-
-		<footer>
-			<p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p>
-
-
-		</footer>
-	</div>
-	<!-- /. PAGE INNER  -->
+		<!-- /. PAGE INNER  -->
 	</div>
 	<!-- /. PAGE WRAPPER  -->
 	</div>
@@ -167,6 +179,62 @@ $orcamentosRejeitados = $orcamentoModel->busca('status_orcamento_id', 4, false);
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script src="assets/materialize/js/materialize.min.js"></script>
+
+
+	<!-- Chart Js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+	<script>
+		var ctx = document.getElementsByClassName("grafico1");
+
+
+		var chartGraph = new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: ['Orcamentos aceitos', 'Orcamentos Rejeitados'],
+				datasets: [{
+					label: "Orcamentos",
+					data: [<?= $orcamentosAceitos + $orcamentosFaturados ?>, <?= $orcamentosRejeitados ?>],
+					backgroundColor: [
+						'rgb(34,139,34)',
+						'rgb(255,5,5)',
+					],
+					hoverOffset: 4
+				}]
+			},
+			options: {
+				maintainAspectRatio: false,
+			}
+
+		});
+	</script>
+
+	<script>
+		var ctx = document.getElementsByClassName("grafico2");
+
+
+		var chartGraph = new Chart(ctx, {
+			type: 'doughnut',
+			data: {
+				labels: ['Orcamentos Respondidos', 'Orcamentos não Respondidos'],
+				datasets: [{
+					label: "Orcamentos",
+					data: [<?= $orcamentosRespondidos ?>, <?= $orcamentosSemResposta ?>],
+					backgroundColor: [
+						'rgb(255,255,0)',
+						'rgb(54, 162, 235)',
+					],
+					hoverOffset: 4
+				}]
+			},
+			options: {
+				maintainAspectRatio: false,
+			}
+
+		});
+	</script>
+
 
 	<!-- Metis Menu Js -->
 	<script src="assets/js/jquery.metisMenu.js"></script>
