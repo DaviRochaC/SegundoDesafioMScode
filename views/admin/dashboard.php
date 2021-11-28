@@ -1,6 +1,9 @@
 <?php
 
+ini_set('display_errors', true);
+error_reporting(E_ALL);
 session_start();
+
 
 
 require_once('../../vendor/autoload.php');
@@ -12,22 +15,27 @@ Middleware::verificaAdminLogado();
 
 $orcamentoModel = new Orcamento();
 
-$orcamentosTotal = count($orcamentoModel->busca());
+$orcamentosTotal = $orcamentoModel->busca();
+$orcamentosAceitos = $orcamentoModel->busca('status_orcamento_id', 2, false);
+$orcamentosFaturados = $orcamentoModel->busca('status_orcamento_id', 5, false);
+$orcamentosSemResposta = $orcamentoModel->busca('status_orcamento_id', 1, false);
+$orcamentosCancelados = $orcamentoModel->busca('status_orcamento_id', 3, false);
+$orcamentosRejeitados = $orcamentoModel->busca('status_orcamento_id', 4, false);
 
-if ($orcamentosTotal > 0) {
-	$orcamentosAceitos = count($orcamentoModel->busca('status_orcamento_id', 2, false));
-	$orcamentosFaturados = count($orcamentoModel->busca('status_orcamento_id', 5, false));
-	$orcamentosSemResposta = count($orcamentoModel->busca('status_orcamento_id', 1, false));
-	$orcamentosCancelados = count($orcamentoModel->busca('status_orcamento_id', 3, false));
-	$orcamentosRejeitados = count($orcamentoModel->busca('status_orcamento_id', 4, false));
-	$orcamentosRespondidos = $orcamentosTotal - $orcamentosSemResposta;
+$orcamentosTotal = (!$orcamentosTotal) ? 0 : count($orcamentosTotal);
+$orcamentosAceitos = (!$orcamentosAceitos) ? 0 : count($orcamentosAceitos);
+$orcamentosFaturados = (!$orcamentosFaturados) ? 0 : count($orcamentosFaturados);
+$orcamentosSemResposta = (!$orcamentosSemResposta) ? 0 : count($orcamentosSemResposta);
+$orcamentosCancelados = (!$orcamentosCancelados) ? 0 : count($orcamentosCancelados);
+$orcamentosRejeitados = (!$orcamentosRejeitados) ? 0 : count($orcamentosRejeitados);
 
-	$porcentagemOrçamentosFaturados = round(($orcamentosFaturados / $orcamentosTotal) * 100);
-	$porcentagemOrçamentosSemResposta = round(($orcamentosSemResposta / $orcamentosTotal) * 100);
-	$porcentagemOrçamentosCancelados = round(($orcamentosCancelados / $orcamentosTotal) * 100);
-	$porcentagemOrçamentosRejeitados = round(($orcamentosRejeitados / $orcamentosTotal) * 100);
-	$porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) * 100);
-}
+$orcamentosRespondidos = $orcamentosTotal - $orcamentosSemResposta;
+$porcentagemOrçamentosFaturados = round(($orcamentosFaturados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosSemResposta = round(($orcamentosSemResposta / $orcamentosTotal) * 100);
+$porcentagemOrçamentosCancelados = round(($orcamentosCancelados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosRejeitados = round(($orcamentosRejeitados / $orcamentosTotal) * 100);
+$porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) * 100);
+
 
 
 ?>
