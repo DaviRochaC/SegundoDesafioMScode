@@ -35,7 +35,13 @@ trait Tools
         }
     }
 
-    public static function verificaCnpjOuCpfValido(string $cpfcnpj)
+
+    /**
+     * Função para verificar se um CPF ou um CNPJ é válido.
+     * @param string $cpfcnpj CPF ou CNPJ que será validado.
+     * @return bool
+     */
+    public static function verificaCnpjOuCpfValido(string $cpfcnpj):bool
     {
         if (strlen($cpfcnpj) == 14) {
             $url = "https://www.receitaws.com.br/v1/cnpj/" . $cpfcnpj;

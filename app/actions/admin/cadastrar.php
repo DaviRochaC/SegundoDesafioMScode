@@ -57,7 +57,7 @@ $arrayAdmin = [
 $adminModel->create($arrayAdmin); // Insere os dados presentes no array acima no banco de dados, especificamente na tabela dos administradores.
 $admin = $adminModel->busca('email', $arrayAdmin['email']); // realiza uma busca no banco de dados por uma linha (administrador) que contem a string do indice email passada no array do administrador.
 
-$assunto = 'Cadastro - Painel Administrativo da Graphic'; // Armazena string em uma variável.
+$assunto = 'Cadastro - Painel Administrativo da Graphic'; //  Armazena a mensagem do assunto em uma variável.
 
 // Cria uma sessão com uma mensagem passando as informações para o administrador cadastrado.
 $_SESSION['cadastro_novo_admin'] = "Olá {$admin['nome']}, segue abaixo sua senha de acesso ao painel administrativo da Graphic.<br><br>

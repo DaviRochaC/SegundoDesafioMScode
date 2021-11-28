@@ -40,7 +40,7 @@ $arrayAdmin = [
 
 $adminModel->update($arrayAdmin, intval($admin['id']));  // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 0(falso).
 
-$assunto = 'Desligamento - Painel Administrativo da Graphic'; // Armazena string em uma variável.
+$assunto = 'Desligamento - Painel Administrativo da Graphic'; //  Armazena a mensagem do assunto em uma variável.
 
 // Cria uma sessão com uma mensagem passando as informações para o administrador desativado.
 $_SESSION['desligamento_admin'] = "Olá {$admin['nome']}, infelizmente sua conta desativada e você perdeu acesso ao painel administrativo da Graphic.";

@@ -13,7 +13,7 @@ use App\Models\Services\Auth\Middleware;
 Middleware::verificaAdminLogado();  // Verifica se usuario administrador está logado.
 
 // Obs: A variável global $_POST no indice 'i' contem o id do administrador criptografado em base64.
-if (intval(base64_decode($_POST['i'])) <= 0) { // Verifica se o valor inteiro da descriptografia 
+if (intval(base64_decode($_POST['i'])) <= 0) { //  // Verifica se o valor inteiro da descriptografia em base64 do GET no indice i é menor ou igual a zero.
     Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Ocorreu um erro tente novamente!'); // Redireciona para a página de edição de clientes com uma mensagem (informando o erro) armazenada em uma sessão.
 }
 
@@ -25,7 +25,7 @@ $id = intval(base64_decode($_POST['i']));  // Armazena o valor inteiro da descri
 
 $cliente = $clienteModel->busca('id', $id);  // Busca no banco de dados na tabela de clientes por alguma linha (cliente) que tenha o conteúdo da variavel $id, e armazena o retorno em uma variável.
 
-if (!$cliente) { // Verifica se o retorno da variável $cliente é falso. O que representa que não foi encontrado nenhum cliente com o id  passado pelo $_GET.
+if (!$cliente) { // Verifica se o retorno da variável $cliente é falso. O que representa que não foi encontrado nenhum cliente com o id  passado pelo $_POST.
     Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Ocorreu um erro tente novamente!');  // Redireciona para a página de edição de clientes com uma mensagem (informando o erro) armazenada em uma sessão.
 }
 
