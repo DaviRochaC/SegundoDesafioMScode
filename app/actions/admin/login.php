@@ -30,6 +30,10 @@ if ($admin['senha'] != md5(htmlspecialchars($_POST['password']))) { // Verifica 
     Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');  // Redireciona para página de login com uma mensagem armazenada em uma sessão.
 }
 
+if(!boolval($admin['ativo'])){ // Verifica se o valor boleano no indice "ativo" do administrador encontrado pelo cpf no banco de dados é igual a falso.
+    Middleware::redirecionar('/views/admin/login.php', 'danger', 'CPF ou senha inválidos!');   // Redireciona para página de login com uma mensagem armazenada em uma sessão.
+}
+
 //armazena em uma sessão um array com informações do administrador logado.
 $_SESSION['admin'] = [
     'id' => $admin['id'],

@@ -13,18 +13,22 @@ Middleware::verificaAdminLogado();
 $orcamentoModel = new Orcamento();
 
 $orcamentosTotal = count($orcamentoModel->busca());
-$orcamentosAceitos = count($orcamentoModel->busca('status_orcamento_id', 2, false));
-$orcamentosFaturados = count($orcamentoModel->busca('status_orcamento_id', 5, false));
-$orcamentosSemResposta = count($orcamentoModel->busca('status_orcamento_id', 1, false));
-$orcamentosCancelados = count($orcamentoModel->busca('status_orcamento_id', 3, false));
-$orcamentosRejeitados = count($orcamentoModel->busca('status_orcamento_id', 4, false));
-$orcamentosRespondidos = $orcamentosTotal - $orcamentosSemResposta;
 
-$porcentagemOrçamentosFaturados = round(($orcamentosFaturados / $orcamentosTotal) * 100);
-$porcentagemOrçamentosSemResposta = round(($orcamentosSemResposta / $orcamentosTotal) * 100);
-$porcentagemOrçamentosCancelados = round(($orcamentosCancelados / $orcamentosTotal) * 100);
-$porcentagemOrçamentosRejeitados = round(($orcamentosRejeitados / $orcamentosTotal) * 100);
-$porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) * 100);
+if ($orcamentosTotal > 0) {
+	$orcamentosAceitos = count($orcamentoModel->busca('status_orcamento_id', 2, false));
+	$orcamentosFaturados = count($orcamentoModel->busca('status_orcamento_id', 5, false));
+	$orcamentosSemResposta = count($orcamentoModel->busca('status_orcamento_id', 1, false));
+	$orcamentosCancelados = count($orcamentoModel->busca('status_orcamento_id', 3, false));
+	$orcamentosRejeitados = count($orcamentoModel->busca('status_orcamento_id', 4, false));
+	$orcamentosRespondidos = $orcamentosTotal - $orcamentosSemResposta;
+
+	$porcentagemOrçamentosFaturados = round(($orcamentosFaturados / $orcamentosTotal) * 100);
+	$porcentagemOrçamentosSemResposta = round(($orcamentosSemResposta / $orcamentosTotal) * 100);
+	$porcentagemOrçamentosCancelados = round(($orcamentosCancelados / $orcamentosTotal) * 100);
+	$porcentagemOrçamentosRejeitados = round(($orcamentosRejeitados / $orcamentosTotal) * 100);
+	$porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) * 100);
+}
+
 
 ?>
 

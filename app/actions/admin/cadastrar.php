@@ -37,7 +37,7 @@ if ($cpfJaCadastradoNoBanco) {   // Verifica se a variavel $cpfJaCadastradoNoBan
     Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'Já existe um administrador vinculado ao CPF informado'); // Redireciona para a página do cadastro de administradores com uma mensagem armazenada em uma sessão. 
 }
 
-$senha = Administrador::gerarSenha(8); // Gera uma senha (retorna conjunto de strings embaralhadas).
+$senha = Administrador::gerarSenha(8); // Gera uma senha (retorna conjunto de strings embaralhadas) com um tamanho 8.
 
 
 // Monta array do administrador com os valores dos inputs que vieram do formulário.
@@ -55,7 +55,7 @@ $assunto = 'Cadastro - Painel Administrativo da Graphic'; // Armazena string em 
 
 // Cria uma sessão com uma mensagem passando as informações para o administrador cadastrado.
 $_SESSION['cadastro_novo_admin'] = "Olá {$admin['nome']}, segue abaixo sua senha de acesso ao painel administrativo da Graphic.<br><br>
-Senha = $senha .";
+Senha = $senha";
 
 
 // Aqui utiliza-se do buffer de saida para armazenar a página que queremos mandar no email em uma variavel.

@@ -6,12 +6,11 @@ use App\Models\Administrador;
 use App\Models\Services\Auth\Middleware;
 
 
-
 Middleware::verificaAdminLogado();
 Middleware::verificaAdminMaster('/views/admin/dashboard.php');
 
 $adminModel = new Administrador();
-$admins = $adminModel->busca();
+$admins = $adminModel->busca('admin_master', '0', false);
 
 
 ?>
@@ -68,6 +67,7 @@ $admins = $adminModel->busca();
                                             <th>Nome</th>
                                             <th>E-mail</th>
                                             <th>CPF</th>
+                                            <th>status</th>
                                             <th>Criado em</th>
                                             <th>Ações</th>
 
@@ -79,8 +79,15 @@ $admins = $adminModel->busca();
                                                 <td><?= $admin['nome'] ?></td>
                                                 <td><?= $admin['email'] ?></td>
                                                 <td><?= Administrador::formataCpfeCnpj($admin['cpf']) ?></td>
+                                                <td><?= (boolval($admin['ativo'])) ? 'ativo' : 'desativado' ?></td>
                                                 <td><?= date('d/m/Y H:i', strtotime($admin['criado_em'])) ?></td>
-                                                <td><a class="btn btn-danger" href="http://localhost/mscode/challengetwo/app/actions/admin/deletar.php?i='.<?= base64_encode($admin['id']) ?>">Deletar</a></td>
+                                                <?php if (boolval($admin['ativo'])) { ?>
+                                                    <td> <a class="btn btn-danger" href="http://localhost/mscode/challengetwo/app/actions/admin/desativar.php?i='.<?= base64_encode($admin['id']) ?>">Desativar</a>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td> <a class="btn btn-success" href="http://localhost/mscode/challengetwo/app/actions/admin/ativar.php?i='.<?= base64_encode($admin['id']) ?>">Ativar</a>
+                                                    </td>
+                                                <?php } ?>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

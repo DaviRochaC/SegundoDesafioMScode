@@ -3,7 +3,7 @@
 //ligando o log de erro do php 
 ini_set('display_errors', true);
 error_reporting(E_ALL);
-session_start();    
+session_start();
 
 require_once('../../../vendor/autoload.php');
 
@@ -28,10 +28,17 @@ $id = intval(base64_decode($_GET['i'])); // Armazena o valor inteiro da descript
 
 $admin = $adminModel->busca('id', $id);  // Busca no banco de dados na tabela de administradores por alguma linha (administrador) que tenha o conteúdo da variavel $id, e armazena o retorno em uma variável.
 
-$adminModel->delete(intval($admin['id']));  // Deleta o administrador  encontrado pelo id no banco de dados.
+
+// Cria um array passando no índice "ativo" o valor de 0, que é a representação de falso.
+$arrayAdmin = [
+    'ativo' => 0
+];
+
+$adminModel->update($arrayAdmin, intval($admin['id']));  // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 0(falso).
 
 $assunto = 'Desligamento - Painel Administrativo da Graphic'; // Armazena string em uma váriavel.
 
+// Cria uma sessão com uma mensagem passando as informações para o administrador desativado.
 $_SESSION['desligamento_admin'] = "Olá {$admin['nome']}, infelizmente sua conta desativada e você perdeu acesso ao painel administrativo da Graphic.";
 
 
