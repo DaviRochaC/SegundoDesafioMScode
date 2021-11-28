@@ -1,7 +1,10 @@
 <?php
+
+//ligando o log de erro do php 
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 session_start();
+date_default_timezone_set('America/Sao_Paulo'); //Alterando a hora para o padrão da zona da cidade de São Paulo.
 
 //ligando o log de erro do php 
 require_once('../../../vendor/autoload.php');

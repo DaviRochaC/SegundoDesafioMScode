@@ -1,5 +1,6 @@
 <?php
 
+//ligando o log de erro do php 
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 session_start();

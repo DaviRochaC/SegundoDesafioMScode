@@ -6,7 +6,7 @@ session_start();
 require_once('../../../../vendor/autoload.php');
 
 
-use App\Models\{Orcamento, StatusOrcamento, Cliente};
+use App\Models\{Orcamento, Cliente};
 use App\Models\Services\{Auth\Middleware, Communication\Email};
 
 
@@ -14,7 +14,7 @@ Middleware::verificaAdminLogado();
 Middleware::verificaCampos($_POST, array('titulo', 'valor', 'clientes_id'), '/views/admin/orcamentos/novoOrcamento.php', 'Todos os campos são obrigátorios!');
 $pdfSetado = Orcamento::verificaArquivoSetado($_FILES['pdf']['name'], $_FILES['pdf']['size']);
 
-$statusOrcamentoModel = new StatusOrcamento();
+
 $orcamentoModel = new Orcamento();
 $clienteModel = new Cliente();
 $emailModel = new Email();
@@ -41,17 +41,18 @@ move_uploaded_file($_FILES['pdf']['tmp_name'], "/opt/lampp/htdocs/mscode/challen
 
 $urlPdf = "http://localhost/mscode/challengetwo/views/pdf/{$_FILES['pdf']['name']}";
 
-$statusOrcamento = $statusOrcamentoModel->busca('id', 1);
+
 $cliente = $clienteModel->busca('id', intval($_POST['clientes_id']));
 $valor = Orcamento::removeMascara(htmlspecialchars($_POST['valor']));
 $valor = doubleval($valor) / 100;
 $token = Orcamento::gerarToken();
+
 $arrayOrcamento = [
     'titulo' => htmlspecialchars($_POST['titulo']),
     'pdf_url' => $urlPdf,
     'clientes_id' => intval($_POST['clientes_id']),
     'valor_total' => $valor,
-    'status_orcamento_id' => intval($statusOrcamento['id']),
+    'status_orcamento_id' => 1,
     'token' => $token
 ];
 

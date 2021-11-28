@@ -17,7 +17,7 @@ class MySql{
 
         //Configurando o acesso ao banco de dados
         $this->ipHost = '127.0.0.1';
-        $this->nomeBanco = 'segundo_desafio';
+        $this->nomeBanco = 'challengeDois';
         $this->user = 'root';
         $this->password = '';
         $this->tabela = $tabela;
