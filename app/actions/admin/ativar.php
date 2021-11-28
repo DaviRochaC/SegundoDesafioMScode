@@ -14,6 +14,7 @@ use App\Models\Services\{Auth\Middleware, Communication\Email};
 Middleware::verificaAdminLogado(); // Verifica se usuario administrador está logado.
 Middleware::verificaAdminMaster('/views/admin/dashboard.php'); // Verifica se o administrador é do tipo master.
 
+// Obs: A variável global $_GET no indice 'i' contem o id do administrador criptografado em base64.
 Middleware::verificaCampos($_GET, array('i'), '/views/admin/gerenciarAdmin.php', 'Ocorreu um erro tente novamente!');  // Verifica se o índices passados através da variável global $_GET  são vazios ou nulos.
 
 if (intval(base64_decode($_GET['i'])) <= 0) {  // Verifica se o valor inteiro da descriptografia em base64 do GET no indice i é menor ou igual a zero.
@@ -28,6 +29,9 @@ $id = intval(base64_decode($_GET['i'])); // Armazena o valor inteiro da descript
 
 $admin = $adminModel->busca('id', $id);  // Busca no banco de dados na tabela de administradores por alguma linha (administrador) que tenha o conteúdo da variavel $id, e armazena o retorno em uma variável.
 
+if(!$admin){ // Verifica se o retorno da variável $admin é falso. O que representa que não foi encontrado nenhum administrador com o id  passado pelo $_GET.
+    Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'danger', 'Administrador não encontrado!');  // Redireciona para a página de gerenciamento de Administradores com uma mensagem (informando o error) armazenada em uma sessão. 
+}
 
 $senha = Administrador::gerarSenha(8); //// Gera uma senha (retorna conjunto de strings embaralhadas) com um tamanho 8.
 
@@ -39,7 +43,7 @@ $arrayAdmin = [
 
 $adminModel->update($arrayAdmin, intval($admin['id']));  // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 1(verdadeiro).
 
-$assunto = 'Conta Ativada - Painel Administrativo da Graphic'; // Armazena string em uma váriavel.
+$assunto = 'Conta Ativada - Painel Administrativo da Graphic'; // Armazena string em uma variável.
 
 // Cria uma sessão com uma mensagem passando as informações para o administrador ativado.
 $_SESSION['ativação_admin'] = "Olá {$admin['nome']}, sua conta foi ativada. Você agora tem acesso ao painel administrativo da Graphic. Segue abaixo sua nova senha de acesso.<br><br>
