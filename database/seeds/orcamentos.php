@@ -43,5 +43,7 @@ foreach ($clientes as $cliente) {
         $arrayOrcamento = [
             'motivo_status_orcamento' => $motivos[rand(0, 2)]
         ];
+
+        $orcamentoModel->update($arrayOrcamento,$orcamento['id']);
     }
 }
