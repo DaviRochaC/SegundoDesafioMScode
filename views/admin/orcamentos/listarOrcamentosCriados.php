@@ -80,28 +80,29 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($orcamentos as $orcamento) { ?>
-                                            <tr class="odd gradeX">
+                                        <?php if ($orcamentos) {
+                                            foreach ($orcamentos as $orcamento) { ?>
+                                                <tr class="odd gradeX">
 
-                                                <td class="center"><?= $orcamento['titulo'] ?></td>
+                                                    <td class="center"><?= $orcamento['titulo'] ?></td>
 
-                                                <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
+                                                    <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
 
-                                                <td class="center"><?= $cliente['nome'] ?></td>
-                                                <td class="center"><?= Cliente::formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
+                                                    <td class="center"><?= $cliente['nome'] ?></td>
+                                                    <td class="center"><?= Cliente::formataCpfeCnpj($cliente['cpf_cnpj']); ?></td>
 
-                                                <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
-                                                <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
+                                                    <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
+                                                    <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
 
-                                                <td class="center"><?= $status['nome'] ?></td>
+                                                    <td class="center"><?= $status['nome'] ?></td>
 
-                                                <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?=$orcamento['token']?>">Reenviar Email</a>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
-                                                        Cancelar
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                                    <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?= $orcamento['token'] ?>">Reenviar Email</a>
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
+                                                            Cancelar
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>

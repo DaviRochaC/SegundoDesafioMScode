@@ -47,7 +47,7 @@ ob_start();  // Inicializa o output buffer(região da memória onde os dados fic
 include('../../../views/admin/emails/mensagemAdminDesligamento.php');  // Inclui o arquivo passado.
 $conteudoHtml = ob_get_clean(); // Obtêm o conteúdo do buffer e armazena na variável $conteudoHtml, e encerra o buffer de saida.
 
-$emailEnviado = $emailModel->enviarEmail($admin['email'], $assunto, $conteudoHtml); // Envia um email para o endereço de email do administrador que estava cadastrado no banco de dados. 
+$emailEnviado = $emailModel->enviarEmail($admin['email'], $assunto, $conteudoHtml); // Envia um email para o endereço de email do administrador que estava desativado no banco de dados. 
 
 if ($emailEnviado) { // Verifica se a variável $emailEnviado é igual a verdadeiro.
     Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'success', 'Administrador deletado com sucesso!'); // Redireciona para a página de gerenciamento de Administradores  com uma mensagem armazenada em uma sessão. 

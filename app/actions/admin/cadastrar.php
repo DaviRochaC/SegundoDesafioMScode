@@ -26,6 +26,12 @@ if (strlen($cpf) != 11) {  // Verifica se depois da remoção da mascara o taman
     Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'CPF inválido');  // Redireciona para a página do cadastro de administradores com uma mensagem armazenada em uma sessão. 
 }
 
+$cpfValido =  Administrador::verificaCnpjOuCpfValido($cpf);
+
+if (!$cpfValido) {
+    Middleware::redirecionar('/views/admin/cadastrarAdmin.php', 'danger', 'CPF inválido');  // Redireciona para a página do cadastro de administradores com uma mensagem armazenada em uma sessão. 
+}
+
 $emailJaCadastradoNoBanco = $adminModel->busca('email', htmlspecialchars($_POST['email'])); // Busca a string do input do email no banco de dados e armazena o retorno em uma variável.
 $cpfJaCadastradoNoBanco =  $adminModel->busca('cpf', $cpf);  // Busca a string da váriavel $cpf no banco de dados e armazena o retorno em uma variável.
 

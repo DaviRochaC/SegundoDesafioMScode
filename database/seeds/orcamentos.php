@@ -25,6 +25,7 @@ foreach($clientes as $cliente){
         'token' =>$token,
         'status_orcamento_id'=>rand(1,5),
         'pdf_url' =>"http://localhost/mscode/challengetwo/views/pdf/orcamentos.pdf",
+        'administrador_id'=>$_SESSION['admin']['id']
     ];
 
     $orcamentoModel->create($arrayOrcamento);

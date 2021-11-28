@@ -43,7 +43,7 @@ if (!$orcamento or !$cliente) {
             <div class="offset-2 col-md-6 mt-3">
                 <div class="card card1 p-3" style="height:475px; width: 700px;">
                     <div class="d-flex flex-column">
-                        <h2 class="text-center"> Avaliação do Orcamento</h2>
+                        <h2 class="text-center text-white"> Avaliação do Orcamento</h2>
                     </div>
 
                     <?php include('../components/alerts.php') ?>

@@ -35,6 +35,55 @@ trait Tools
         }
     }
 
+    public static function verificaCnpjOuCpfValido(string $cpfcnpj)
+    {
+        if (strlen($cpfcnpj) == 14) {
+            $url = "https://www.receitaws.com.br/v1/cnpj/" . $cpfcnpj;
+            $json = file_get_contents($url);
+
+            if (json_decode($json)->status == 'ERROR') {;
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        if (strlen($cpfcnpj) == 11) {
+            if (strlen($cpfcnpj) != 11) {
+                return false;
+            }
+
+            if (preg_match('/([0-9])\1{10}/', $cpfcnpj)) {
+                return false;
+            }
+
+            $D1 = 0;
+            $D2 = 0;
+
+            for ($i = 0, $x = 10; $i <= 8; $i++, $x--) {
+
+                $D1 += $cpfcnpj[$i] * $x;
+            }
+
+            for ($i = 0, $x = 11; $i <= 9; $i++, $x--) {
+
+                $D2 += $cpfcnpj[$i] * $x;
+            }
+
+
+
+            $R1 = (($D1 % 11) < 2) ? 0 : 11 - ($D1 % 11);
+            $R2 = (($D2 % 11) < 2) ? 0 : 11 - ($D2 % 11);
+
+
+            if ($R1 != $cpfcnpj[9] or $R2 != $cpfcnpj[10]) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
     /**
      * Função para gerar token.
      * @return string

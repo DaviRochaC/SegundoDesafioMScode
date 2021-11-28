@@ -80,7 +80,8 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($orcamentos as $orcamento) { ?>
+                                        <?php if($orcamentos){
+                                         foreach ($orcamentos as $orcamento) { ?>
                                             <tr class="odd">
 
                                                 <td class="center"><?= $orcamento['titulo'] ?></td>
@@ -106,7 +107,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
 
 
                                             </tr>
-                                        <?php } ?>
+                                        <?php }}?>
                                     </tbody>
                                 </table>
                             </div>

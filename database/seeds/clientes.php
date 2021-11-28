@@ -11,7 +11,7 @@ use App\Models\Cliente;
 $clienteModel = new Cliente();
 
 
-for($i = 1; $i < 20; $i++){
+for($i = 1; $i < 50; $i++){
     $arrayCliente = [
         'nome' => "cliente $i",
         'email' => "cliente$i@mail.com",

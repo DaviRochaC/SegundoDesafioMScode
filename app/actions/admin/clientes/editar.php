@@ -35,6 +35,12 @@ if (strlen($cpfOuCnpj) != 11 and strlen($cpfOuCnpj) != 14) {
     Middleware::redirecionar('/views/admin/clientes/editar.php?i=' . $_POST['i'], 'danger', 'CPF ou CNPJ inválido');
 }
 
+$cpfOuCnpjValido = Cliente::verificaCnpjOuCpfValido($cpfOuCnpj);
+
+if(!$cpfOuCnpjValido){
+    Middleware::redirecionar('/views/admin/clientes/editar.php?i=' . $_POST['i'], 'danger', 'CPF ou CNPJ inválido');
+}
+
 
 $emailJaCadastradoNoBanco = $clienteModel->busca('email', htmlspecialchars($_POST['email']));
 $cpfOuCnpjJaCadastradoNoBanco = $clienteModel->busca('cpf_cnpj', $cpfOuCnpj);

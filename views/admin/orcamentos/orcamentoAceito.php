@@ -44,7 +44,7 @@ if (!$orcamento or !$cliente) {
                 <div class="col-md-12">
                     <div class="card card1 p-3" style="height:250px; width: 700px;">
                         <div class="row">
-                            <h2 class="text-center">Orçamento Aceito!</h2>
+                            <h2 class="text-center text-white">Orçamento Aceito!</h2>
                         </div>
                         <div class="text-center">
                             
@@ -53,9 +53,10 @@ if (!$orcamento or !$cliente) {
 
                         <div class="row pt-4">
                             <div class="col-12">
-                                <h5 class="text-center">Olá <?=$cliente['nome']?></h5>
+                                <h5 class="text-center text-white">Olá <?=$cliente['nome']?></h5>
 
-                                <p class="text-center">Seu orçamento foi aceito e enviado para área de faturamento. Assim que o mesmo for faturado você sera notificado através de seu e-mail. Qualquer duvida entre em contato conosco!</p>
+                                <p class="text-center text-white">Seu orçamento foi aceito e enviado para área de faturamento. Assim que o mesmo for faturado você sera notificado através de seu e-mail. <br>
+                                    Qualquer dúvida remanescente entre em contato conosco!</p>
                             </div>
 
 

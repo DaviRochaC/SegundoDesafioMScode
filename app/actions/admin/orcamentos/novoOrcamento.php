@@ -53,7 +53,8 @@ $arrayOrcamento = [
     'clientes_id' => intval($_POST['clientes_id']),
     'valor_total' => $valor,
     'status_orcamento_id' => 1,
-    'token' => $token
+    'token' => $token,
+    'administradores_id' => intval($_SESSION['admin']['id'])
 ];
 
 $orcamentoModel->create($arrayOrcamento);

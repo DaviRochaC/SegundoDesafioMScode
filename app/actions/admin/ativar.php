@@ -37,7 +37,7 @@ $arrayAdmin = [
     'senha' => md5($senha)
 ];
 
-$adminModel->update($arrayAdmin, intval($admin['id']));  // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 0(falso).
+$adminModel->update($arrayAdmin, intval($admin['id']));  // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 1(verdadeiro).
 
 $assunto = 'Conta Ativada - Painel Administrativo da Graphic'; // Armazena string em uma váriavel.
 

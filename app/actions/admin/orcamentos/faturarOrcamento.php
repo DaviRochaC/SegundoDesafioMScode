@@ -38,7 +38,7 @@ $orcamentoAtualizado = $orcamentoModel->busca('id', $orcamento['id']);
 $cliente = $clienteModel->busca('id', $orcamentoAtualizado['clientes_id']);
 
 $assunto = 'Orçamento Faturado- Graphic';
-$_SESSION['orcamento_faturado'] = "Olá {$cliente['nome']}, informamos que seu orçamento foi faturado. Para continuação do processo seu orçamento será encaminhado para nosso setor financeiro.";
+$_SESSION['orcamento_faturado'] = "Olá {$cliente['nome']}, informamos que seu orçamento foi faturado. Para continuação do processo, seu orçamento será encaminhado para nosso setor financeiro.";
 
 
 ob_start();
