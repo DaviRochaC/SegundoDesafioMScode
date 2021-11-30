@@ -29,7 +29,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orçamentos criados</title>
-
+    <link rel="icon" type="image/png" href="http://localhost/mscode/challengetwo/views/admin/assets/img/graphic.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
@@ -54,7 +54,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
     <div id="page-wrapper">
         <div class="header">
             <h3 class="page-header">
-                Orçamentos criados
+                Orçamentos criados -  não respondidos
             </h3>
 
         </div>
@@ -75,7 +75,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                             <th class="center">Cliente</th>
                                             <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
-                                            <th class="center">Status</th>
+                                            <th class="center">Data de Criação</th>
                                             <th class="center">Ações</th>
                                         </tr>
                                     </thead>
@@ -94,7 +94,8 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                                     <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
                                                     <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
 
-                                                    <td class="center"><?= $status['nome'] ?></td>
+                    
+                                                    <td class="center"><?= date('d/m/Y', strtotime($orcamento['criado_em'])) ?></td>
 
                                                     <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?= $orcamento['token'] ?>">Reenviar Email</a>
                                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">

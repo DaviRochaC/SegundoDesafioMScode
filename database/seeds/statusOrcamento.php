@@ -7,7 +7,7 @@ use App\Models\StatusOrcamento;
 $statusorcamentoModel = new StatusOrcamento;
 
 
-$statusOrcamentos = ['Nao respondido',
+$statusOrcamentos = ['Não respondido',
 'Aceito','Cancelado','Rejeitado','Faturado'];
 
 for($i = 0; $i < count($statusOrcamentos);$i++){

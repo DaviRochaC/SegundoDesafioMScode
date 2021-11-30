@@ -15,6 +15,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title> Redefinição de senha </title>
+    <link rel="icon" type="image/png" href="http://localhost/mscode/challengetwo/views/admin/assets/img/graphic.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="" rel="stylesheet" />

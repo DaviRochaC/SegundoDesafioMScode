@@ -36,7 +36,7 @@ $pdf = time() . '.pdf';
 $_FILES['pdf']['name'] = $pdf;
 
 if ($_FILES['pdf']['size'] > (1024 * 1024 * 5)) {      // Verifica se o tamanho do pdf enviado é maior que 5MB.
-    MIddleware::redirecionar('/views/admin/orcamentos/novoOrcamento.php', 'danger', 'arquivo enviado é muito grande, envie arquivos de até 5 MB');
+    MIddleware::redirecionar('/views/admin/orcamentos/novoOrcamento.php', 'danger', 'arquivo enviado é muito grande, envie arquivos de até 5 MB');  // Redireciona para página de cadastrar um novo Orçamento com uma mensagem (informando o error) armazenada em uma sessão.
 }
 
 move_uploaded_file($_FILES['pdf']['tmp_name'], "/opt/lampp/htdocs/mscode/challengetwo/views/pdf/{$_FILES['pdf']['name']}");     // Salva na pasta "PDF" o pdf enviado no formúlario.
