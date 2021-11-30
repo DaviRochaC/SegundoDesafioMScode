@@ -76,6 +76,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
                                             <th class="center">Valor</th>
                                             <th class="center">Status</th>
                                             <th class="center">data da aprovação</th>
+                                            <th class="center">PDF</th>
                                             <th class="center">Ações</th>
                                         </tr>
                                     </thead>
@@ -84,7 +85,8 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
                                          foreach ($orcamentos as $orcamento) { ?>
                                             <tr class="odd">
 
-                                                <td class="center"><?= $orcamento['titulo'] ?></td>
+                                                <td class="center"><?= $orcamento['titulo'] ?>
+                                               </td>
 
                                                 <?php $cliente = $clienteModel->busca('id', $orcamento['clientes_id']); ?>
 
@@ -97,11 +99,14 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 2, false);
                                                 <td class="center"><?= $status['nome'] ?></td>
 
                                                 <td class="center"><?= date('d/m/Y', strtotime($orcamento['editado_em'])) ?></td>
-
-                                                <td class="center"><a class="btn btn-success" href="../../../app/actions/admin/orcamentos/faturarOrcamento.php?token=<?= $orcamento['token'] ?>">Faturar</a>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
+                                                <td><a class="btn btn-secondary btn-sm "href="<?=$orcamento['pdf_url'] ?>" target="_blank">Ver</a></td>
+                                                <td class="center">
+                                                <a class="btn btn-success " href="../../../app/actions/admin/orcamentos/faturarOrcamento.php?token=<?= $orcamento['token'] ?>">Faturar</a>
+                                                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
                                                         Cancelar
                                                     </button>
+
+                                                  
                                                 </td>
 
 

@@ -54,7 +54,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
     <div id="page-wrapper">
         <div class="header">
             <h3 class="page-header">
-                Orçamentos criados -  não respondidos
+                Orçamentos criados - não respondidos
             </h3>
 
         </div>
@@ -76,6 +76,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                             <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
                                             <th class="center">Data de Criação</th>
+                                            <th class="center">PDF</th>
                                             <th class="center">Ações</th>
                                         </tr>
                                     </thead>
@@ -94,16 +95,18 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 1, false);
                                                     <td class="center">R$<?= number_format($orcamento['valor_total'], 2, ',', '.') ?></td>
                                                     <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
 
-                    
                                                     <td class="center"><?= date('d/m/Y', strtotime($orcamento['criado_em'])) ?></td>
-
+                                                    
+                                                    <td><a class="btn btn-secondary btn-sm " href="<?= $orcamento['pdf_url'] ?>" target="_blank">Ver</a></td>
+                                                    
                                                     <td class="center"><a class="btn btn-primary" href="../../../app/actions/admin/orcamentos/enviarEmail.php?token=<?= $orcamento['token'] ?>">Reenviar Email</a>
                                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar<?= $orcamento['id'] ?>">
                                                             Cancelar
                                                         </button>
                                                     </td>
                                                 </tr>
-                                        <?php } } ?>
+                                        <?php }
+                                        } ?>
                                     </tbody>
                                 </table>
                             </div>

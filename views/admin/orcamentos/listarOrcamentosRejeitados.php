@@ -77,6 +77,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 4, false);
                                             <th class="center">Valor</th>
                                             <th class="center">Status</th>
                                             <th class="center">Data da Rejeição</th>
+                                            <th class="center">PDF</th>
                                             <th class="center">Ações</th>
                                         </tr>
                                     </thead>
@@ -97,7 +98,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id', 4, false);
 
                                                 <td class="center"><?= $status['nome'] ?></td>
                                                 <td class="center"><?= date('d/m/Y', strtotime($orcamento['editado_em'])) ?></td>
-
+                                                <td><a class="btn btn-secondary btn-sm " href="<?= $orcamento['pdf_url'] ?>" target="_blank">Ver</a></td>
                                                 <td class="center">
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#motivo<?= $orcamento['id'] ?>">
                                                         Visualizar motivo

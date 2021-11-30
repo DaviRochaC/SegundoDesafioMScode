@@ -42,27 +42,27 @@ trait Crud
     public function busca(string $colunaDaTabela = null, mixed $itemDeBusca = null, bool $primeiraLinha  = true): bool|array
     {
 
-        if ($colunaDaTabela != null and $itemDeBusca != null) { // Verifica se os dois primeiros parâmetros são diferentes de nulo.
+        if ($colunaDaTabela != null and $itemDeBusca != null) {   // Verifica se os dois primeiros parâmetros são diferentes de nulo.
               
 
-            $where = "$colunaDaTabela = '$itemDeBusca'";   // Monta o where com os valores passados.
+            $where = "$colunaDaTabela = '$itemDeBusca'";     // Monta o where com os valores passados.
 
-            $busca = $this->db->buscar($where);   // Realiza a busca no banco de dados de acordo com o where e armazena na variavel.
+            $busca = $this->db->buscar($where);     // Realiza a busca no banco de dados de acordo com o where e armazena na variavel.
 
-            if (count($busca) > 0) {  // Verifica quantidade de linhas retornadas.
-                if ($primeiraLinha) { // Verifica se o parâmetro $primeiraLinha é verdadeiro.
-                    return $busca[0]; // Retorna primeira linha da busca de acordo com where passado.
+            if (count($busca) > 0) {    // Verifica quantidade de linhas retornadas.
+                if ($primeiraLinha) {   // Verifica se o parâmetro $primeiraLinha é verdadeiro.
+                    return $busca[0];   // Retorna primeira linha da busca de acordo com where passado.
                 }
-                return $busca;  // Retorna todas as linhas correspondente ao where passado.
+                return $busca;    // Retorna todas as linhas correspondente ao where passado.
             } else {
                 return false; // Retorna falso.
             }
         }
-        if ($colunaDaTabela == null and $itemDeBusca == null) { // Verifica se os dois primeiros parâmetros são nulos.
-            return $this->db->buscar();   // Retorna a busca no banco de dados sem where especifico, nesse caso especifico vai retornar todas as linhas de determinada tabela.
+        if ($colunaDaTabela == null and $itemDeBusca == null) {   // Verifica se os dois primeiros parâmetros são nulos.
+            return $this->db->buscar();     // Retorna a busca no banco de dados sem where especifico, nesse caso especifico vai retornar todas as linhas de determinada tabela.
         }
 
-        return false; // Retorna falso. Esse retorno ira acontecer quando um dos dois primeiros parâmetros é nulo e o outro não.
+        return false;    // Retorna falso. Esse retorno ira acontecer quando um dos dois primeiros parâmetros é nulo e o outro não.
     }
 
 

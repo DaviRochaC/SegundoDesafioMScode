@@ -76,6 +76,7 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id',5, false);
                                             <th class="center">CPF/CNPJ</th>
                                             <th class="center">Valor</th>
                                             <th class="center">Status</th>
+                                            <th class="center">PDF</th>
                                         </tr>
                                     </thead>
                                     <tbody><?php if($orcamentos){
@@ -93,6 +94,8 @@ $orcamentos = $orcamentoModel->busca('status_orcamento_id',5, false);
                                                 <?php $status = $statusOrcamentoModel->busca('id', $orcamento['status_orcamento_id']); ?>
 
                                                 <td class="center"><?= $status['nome'] ?></td>
+
+                                                <td class="center"><a class="btn btn-secondary" href="<?= $orcamento['pdf_url'] ?>" target="_blank">Ver</a></td>
 
                                             </tr>
                                         <?php }} ?>
