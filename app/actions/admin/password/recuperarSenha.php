@@ -38,11 +38,11 @@ $arrayAdmin = [
 $adminModel->update($arrayAdmin, intval($admin['id']));   // Atualiza o administrador inserindo o novo token do mesmo no banco de dados.
 
 
-$assunto = 'Recuperar senha - Painel Administrativo da Graphic';   //Armazena a mensagem do assunto do email que vai ser enviado em uma variável.
+$assunto = 'Recuperar senha - Sistema de Orçamentos da Graphic';   //Armazena a mensagem do assunto do email que vai ser enviado em uma variável.
 
   // Cria uma sessão com uma mensagem passando as informações para o administrador que passará pelo processo de recuperação de senha.
 $_SESSION['recuperar_senha_admin'] = "Olá {$admin['nome']}, um pedido de redefinição de senha foi solicitado para a sua conta 
- {$admin['email']} no Painel administrativo da Graphic. Para confirmar este pedido e definir uma nova senha para sua conta, por favor, clique no link abaixo: <br><br> 
+ {$admin['email']} no Sistema de Orçamentos da Graphic. Para confirmar este pedido e definir uma nova senha para sua conta, por favor, clique no link abaixo: <br><br> 
  <a href=\"http://localhost/mscode/challengetwo/views/admin/password/redefinirSenha.php?token=$token\">Redefinir senha</a>";
 
 

@@ -24,7 +24,7 @@ class Administrador
 
 
   /**
-   * Função para gerar senha. Usada nesse projeto apenas para ações dos administradores que tem acesso ao Painel administrativo.
+   * Função para gerar senha. Usada nesse projeto apenas para ações dos administradores que tem acesso ao Sistema de Orçamentos.
    * @param int $tamanho Tamanho que você deseja que a senha seja gerada (quantidade de caracteres).
    * @return string
    */

@@ -44,10 +44,10 @@ $arrayAdmin = [
 
 $adminModel->update($arrayAdmin, intval($admin['id']));    // Atualiza o administrador  encontrado pelo id no banco de dados e coloca no seu indice "ativo" o valor de 1(verdadeiro).
 
-$assunto = 'Conta Ativada - Painel Administrativo da Graphic';    //Armazena a mensagem do assunto do email que vai ser enviado em uma variável.
+$assunto = 'Conta Ativada - Sistema de Orçamentos da Graphic';    //Armazena a mensagem do assunto do email que vai ser enviado em uma variável.
 
 // Cria uma sessão com uma mensagem passando as informações para o administrador ativado.
-$_SESSION['ativação_admin'] = "Olá {$admin['nome']}, sua conta foi ativada. Você agora tem acesso ao painel administrativo da Graphic. Segue abaixo sua nova senha de acesso.<br><br>
+$_SESSION['ativação_admin'] = "Olá {$admin['nome']}, sua conta foi ativada. Você agora tem acesso ao Sistema de Orçamentos da Graphic. Segue abaixo sua nova senha de acesso.<br><br>
 Senha = $senha";
 
 
