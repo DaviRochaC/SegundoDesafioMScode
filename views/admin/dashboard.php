@@ -76,8 +76,9 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 			<div class="header">
 				<h1 class="page-header">
 					Dashboard
+					
 				</h1>
-
+				<?php include('./components/alerts.php'); ?>  <!-- incluindo o menu -->
 			</div>
 
 			<div id="page-inner">

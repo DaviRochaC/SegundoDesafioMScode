@@ -33,7 +33,7 @@ session_start(); // Liga as sessões.
                             <span>CPF</span>
                             <input type="text" name="cpf" class="form-control cpf" maxlength="14">
 
-                            <span class="mt-3">Password</span>
+                            <span class="mt-3">SENHA</span>
                             <input name="password" class="form-control" type="password">
 
                             <button type="submit" class="mt-3 btn btn-secondary"> Login

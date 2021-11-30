@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('America/Sao_Paulo'); //Alterando a hora para o padrão da zona da cidade de São Paulo.
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 session_start();
@@ -30,7 +30,7 @@ foreach ($clientes as $cliente) {
         'token' => $token,
         'status_orcamento_id' => rand(1, 5),
         'pdf_url' => "http://localhost/mscode/challengetwo/views/pdf/orcamentos.pdf",
-        'administradores_id' => intval($_SESSION['admin']['id'])
+        'administradores_id' => 1
     ];
 
     $orcamentoModel->create($arrayOrcamento);

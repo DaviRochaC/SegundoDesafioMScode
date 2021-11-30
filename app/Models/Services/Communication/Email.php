@@ -11,7 +11,13 @@ class Email
 
     private $mail;
 
-    public function enviarEmail($destinatario, $assunto, $conteudoHtml)
+    /**
+     * Função para enviar E-mail.
+     * @param string $destinatario Para quem o e-mail será enviado.
+     * @param string $assunto Assunto do e-mail.
+     * @param string $conteudo O conteudo que o email irá apresentar.
+     */
+    public function enviarEmail(string $destinatario, string $assunto, string $conteudoHtml)
     {
 
         $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');

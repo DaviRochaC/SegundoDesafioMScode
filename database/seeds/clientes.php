@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('America/Sao_Paulo'); //Alterando a hora para o padrão da zona da cidade de São Paulo.
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 
@@ -11,7 +11,7 @@ use App\Models\Cliente;
 $clienteModel = new Cliente();
 
 
-for($i = 1; $i < 50; $i++){
+for($i = 1; $i < 25; $i++){
     $arrayCliente = [
         'nome' => "cliente $i",
         'email' => "cliente$i@mail.com",
