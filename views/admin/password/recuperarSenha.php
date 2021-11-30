@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Liga as sessões.
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ session_start();
 
 </head>
 
-<body oncontextmenu="return false" class="snippet-body">
+<body  class="snippet-body">
     <div class="container mt-5 mb-5">
         <div class="d-flex flex row g-0">
             <div class="offset-3 col-md-6 mt-3">
@@ -25,7 +25,7 @@ session_start();
                         <h2 class="text-center text-white">Informe seu CPF:</h2>
                     </div>
 
-                    <?php include('../components/alerts.php') ?>
+                    <?php include('../components/alerts.php') ?> <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
 
                     <form method="POST" action="../../../app/actions/admin/password/recuperarSenha.php">
                         <div class="input-field d-flex flex-column mt-3">

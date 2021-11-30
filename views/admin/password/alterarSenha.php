@@ -5,11 +5,12 @@ require_once('../../../vendor/autoload.php');
 
 use App\Models\Services\Auth\Middleware;
 
-session_start();
+session_start(); // Liga as sessões.
 
-Middleware::verificaAdminLogado();
+Middleware::verificaAdminLogado(); // Verifica se usuario administrador está logado.
 
-Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorreu um erro, tente novamente!');
+// Obs: A variável global $_GET no indice 'i' contem o id do administrador criptografado em base64.
+Middleware::verificaCampos($_GET, array('i'), '/views/admin/dashboard.php', 'Ocorreu um erro, tente novamente!'); // Verifica se o índices passados através da variável global $_GET  são vazios ou nulos.
 
 
 ?>
@@ -41,8 +42,10 @@ Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorre
     <div id="wrapper">
         <!--/. NAV BAR -->
         <?php include('../components/navbar.php'); ?>
+        <!-- incluindo o nav-bar -->
         <!--/. NAV TOP  -->
         <?php include('../components/menu.php'); ?>
+        <!-- incluindo o menu -->
 
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
@@ -58,6 +61,7 @@ Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorre
                     <div class="col-lg-12">
                         <div class="card">
                             <?php include('../components/alerts.php') ?>
+                            <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                             <div class="card-content">
 
 
@@ -65,23 +69,23 @@ Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorre
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input name="senhaAtual" type="text" class="validate">
+                                            <input name="senhaAtual" type="password" class="validate">
                                             <label>Senha atual</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input name="novaSenha" type="text" class="validate">
+                                            <input name="novaSenha" type="password" class="validate">
                                             <label> Nova senha</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input name="confirmacaoSenha" type="text" class="validate">
+                                            <input name="confirmacaoSenha" type="password" class="validate">
                                             <label>Confirmacao nova senha</label>
                                         </div>
                                     </div>
 
-
+                                    <!-- imprimindo em um input escondido o valor do $_GET['i'] -->
                                     <input type="hidden" name="i" value="<?= $_GET['i'] ?>">
 
                                     <div class="row">
@@ -97,17 +101,17 @@ Middleware::verificaCampos($_GET,array('i'),'/views/admin/dashboard.php','Ocorre
                 <!-- /. WRAPPER  -->
                 <!-- JS Scripts-->
                 <!-- jQuery Js -->
-                <script src="../assets/js/jquery-1.10.2.js"></script>
+ <script src="../assets/js/jquery-1.10.2.js"></script>
 
                 <!-- Bootstrap Js -->
-                <script src="../assets/js/bootstrap.min.js"></script>
+ <script src="../assets/js/bootstrap.min.js"></script>
 
-                <script src="../assets/materialize/js/materialize.min.js"></script>
+ <script src="../assets/materialize/js/materialize.min.js"></script>
 
                 <!-- Metis Menu Js -->
-                <script src="../assets/js/jquery.metisMenu.js"></script>
+ <script src="../assets/js/jquery.metisMenu.js"></script>
                 <!-- Custom Js -->
-                <script src="../assets/js/custom-scripts.js"></script>
+ <script src="../assets/js/custom-scripts.js"></script>
 
 
 

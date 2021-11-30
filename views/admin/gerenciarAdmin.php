@@ -6,12 +6,12 @@ use App\Models\Administrador;
 use App\Models\Services\Auth\Middleware;
 
 
-Middleware::verificaAdminLogado();
-Middleware::verificaAdminMaster('/views/admin/dashboard.php');
+Middleware::verificaAdminLogado();   // Verifica se usuario administrador está logado.
+Middleware::verificaAdminMaster('/views/admin/dashboard.php'); // Verifica se o administrador é do tipo master.
 
-$adminModel = new Administrador();
-$admins = $adminModel->busca('admin_master', '0', false);
-
+$adminModel = new Administrador();  // Instância da classe Administrador para utilização de seus metódos.
+$admins = $adminModel->busca('admin_master','0', false); //buscando todos os administradores que no indice 'admin_master' recebem "0" que representa falso,
+                                                          // ou seja, todos os administradores que nao são do tipo master.
 
 ?>
 
@@ -22,7 +22,7 @@ $admins = $adminModel->busca('admin_master', '0', false);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerenciar Clientes</title>
-
+    <link rel="icon" type="image/png" href="http://localhost/mscode/challengetwo/views/admin/assets/img/graphic.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
@@ -40,9 +40,9 @@ $admins = $adminModel->busca('admin_master', '0', false);
 
 <body>
     <!--/. NAV BAR -->
-    <?php include('components/navbar.php'); ?>
+    <?php include('components/navbar.php'); ?>  <!-- incluindo o nav-bar -->
     <!--/. NAV TOP  -->
-    <?php include('components/menu.php'); ?>
+    <?php include('components/menu.php'); ?> <!-- incluindo o menu -->
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div class="header">
@@ -57,7 +57,7 @@ $admins = $adminModel->busca('admin_master', '0', false);
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
-                    <?php include('components/alerts.php') ?>
+                    <?php include('components/alerts.php') ?>  <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                     <div class="card">
                         <div class="card-content">
                             <div class="table-responsive">

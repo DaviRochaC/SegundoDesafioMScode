@@ -48,6 +48,7 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title> Dashboard</title>
+	<link rel="icon" type="image/png" href="http://localhost/mscode/challengetwo/views/admin/assets/img/graphic.png">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
 	<!-- Bootstrap Styles-->
@@ -66,9 +67,9 @@ $porcentagemOrçamentosAceitos = round(($orcamentosAceitos / $orcamentosTotal) *
 <body>
 	<div id="wrapper">
 		<!--/. NAV BAR -->
-		<?php include('./components/navbar.php'); ?>
+		<?php include('./components/navbar.php'); ?> <!-- incluindo o nav-bar -->
 		<!--/. NAV TOP  -->
-		<?php include('./components/menu.php'); ?>
+		<?php include('./components/menu.php'); ?>  <!-- incluindo o menu -->
 		<!-- /. NAV SIDE  -->
 
 		<div id="page-wrapper">

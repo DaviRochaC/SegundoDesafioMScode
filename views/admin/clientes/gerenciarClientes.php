@@ -6,11 +6,11 @@ require_once('../../../vendor/autoload.php');
 use App\Models\Cliente;
 use App\Models\Services\Auth\Middleware;
 
-Middleware::verificaAdminLogado();
+Middleware::verificaAdminLogado();  // Verifica se usuario administrador está logado.
 
-$clienteModel = new Cliente();
+$clienteModel = new Cliente(); // Instância da classe Cliente para utilização de seus metódos.
 
-$clientes = $clienteModel->busca();
+$clientes = $clienteModel->busca(); // Busca todos os clientes.
 
 ?>
 
@@ -39,9 +39,9 @@ $clientes = $clienteModel->busca();
 
 <body>
     <!--/. NAV BAR -->
-    <?php include('../components/navbar.php'); ?>
+    <?php include('../components/navbar.php'); ?> <!-- incluindo o nav-bar -->
     <!--/. NAV TOP  -->
-    <?php include('../components/menu.php'); ?>
+    <?php include('../components/menu.php'); ?>  <!-- incluindo o menu -->
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div class="header">
@@ -56,7 +56,7 @@ $clientes = $clienteModel->busca();
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
-                    <?php include('../components/alerts.php') ?>
+                    <?php include('../components/alerts.php') ?> <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                     <div class="card">
                         <div class="card-content">
                             <div class="table-responsive">

@@ -11,7 +11,7 @@
 	</ul>
 </nav>
 <!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
+<ul id="dropdown1" class="dropdown-content">                                                  <!--Passando para a action de alterar senha através do $_GET no indice "i" o id criptografado em base64 do adminstrador que estiver logado -->
 	<li><a href="http://localhost/mscode/challengetwo/views/admin/password/alterarSenha.php?i=<?= base64_encode($_SESSION['admin']['id']) ?>"><i class="fas fa-unlock"></i> Alterar Senha </a>
 	</li>
 	<li>

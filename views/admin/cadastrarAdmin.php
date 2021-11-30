@@ -4,11 +4,11 @@ require_once('../../vendor/autoload.php');
 
 use App\Models\Services\Auth\Middleware;
 
-session_start();
+session_start(); // Liga as sessões.
 
 
-Middleware::verificaAdminLogado();
-Middleware::verificaAdminMaster('/views/admin/dashboard.php');
+Middleware::verificaAdminLogado(); // Verifica se usuario administrador está logado.
+Middleware::verificaAdminMaster('/views/admin/dashboard.php'); // Verifica se o administrador é do tipo master.
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ Middleware::verificaAdminMaster('/views/admin/dashboard.php');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> Novo administrador</title>
-
+    <link rel="icon" type="image/png" href="http://localhost/mscode/challengetwo/views/admin/assets/img/graphic.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
@@ -37,9 +37,9 @@ Middleware::verificaAdminMaster('/views/admin/dashboard.php');
 <body>
     <div id="wrapper">
         <!--/. NAV BAR -->
-        <?php include('components/navbar.php'); ?>
+        <?php include('components/navbar.php'); ?>  <!-- incluindo o nav-bar -->
         <!--/. NAV TOP  -->
-        <?php include('components/menu.php'); ?>
+        <?php include('components/menu.php'); ?> <!-- incluindo o menu -->
 
         </nav>
         <!-- /. NAV SIDE  -->
@@ -57,7 +57,7 @@ Middleware::verificaAdminMaster('/views/admin/dashboard.php');
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('components/alerts.php') ?>
+                                <?php include('components/alerts.php') ?>  <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                                 <form method="POST" action="../../app/actions/admin/cadastrar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">

@@ -1,12 +1,11 @@
 <?php
 
-
-session_start();
+session_start(); // Liga as sessões.
 require('../../../vendor/autoload.php');
 use App\Models\Services\Auth\Middleware;
 
 
-Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso inválido!');
+Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso inválido!');  // Verifica se o índices passados através da variável global $_GET  são vazios ou nulos.
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +22,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
 
 </head>
 
-<body oncontextmenu="return false" class="snippet-body">
+<body  class="snippet-body">
     <div class="container mt-5 mb-5">
         <div class="d-flex flex row g-0">
             <div class="offset-3 col-md-6 mt-3">
@@ -32,7 +31,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
                         <h2 class="text-center text-white">Redefinir Senha</h2>
                     </div>
 
-                    <?php include('../components/alerts.php') ?>
+                    <?php include('../components/alerts.php') ?> <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
 
                     <form method="POST" action="../../../app/actions/admin/password/redefinirSenha.php">
                         <div class="input-field d-flex flex-column mt-3">
@@ -41,7 +40,7 @@ Middleware::verificaCampos($_GET,array('token'),'/views/admin/login.php','Acesso
 
                             <span class="mt-3"> Confirmação nova senha </span>
                             <input type="password" name="confirmacaoSenha" class="form-control" >
-
+                                                               <!-- imprimindo em um input escondido o valor do $_GET['token'] -->
                             <input type="hidden" name="token" value="<?= $_GET['token']?>">
 
                             <button type="submit" class="mt-3 btn btn-secondary"> Redefinir

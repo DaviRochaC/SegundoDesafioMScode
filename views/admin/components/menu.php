@@ -4,7 +4,7 @@
 
 			<li><a class="active-menu waves-effect waves-dark" href="http://localhost/mscode/challengetwo/views/admin/dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
 			</li>
-			<?php if ($_SESSION['admin']['admin_master']) { ?>
+			<?php if ($_SESSION['admin']['admin_master']) { ?>  <!-- Verificando se a sessao admin no indice admin_master é verdadeira -->
 				<li>
 					<a href="#" class="waves-effect waves-dark"><i class="fas fa-users"></i>Administradores</a>
 					<ul class="nav nav-second-level">

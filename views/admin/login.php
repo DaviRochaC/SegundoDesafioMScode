@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // Liga as sessões.
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ session_start();
                         <h2 class="text-center text-white">Bem vindo!</h2>
                     </div>
 
-                    <?php include('components/alerts.php') ?>
+                    <?php include('components/alerts.php') ?> <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
 
                     <form method="POST" action="../../app/actions/admin/login.php">
                         <div class="input-field d-flex flex-column mt-3">

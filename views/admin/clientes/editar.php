@@ -6,19 +6,19 @@ require_once('../../../vendor/autoload.php');
 use App\Models\Cliente;
 use App\Models\Services\Auth\Middleware;
 
-Middleware::verificaAdminLogado();
+Middleware::verificaAdminLogado();  // Verifica se usuario administrador está logado.
+
+// Obs: A variável global $_GET no indice 'i' contem o id do administrador criptografado em base64.
+Middleware::verificaCampos($_GET, array('i'), '/views/admin/clientes/gerenciarClientes.php', 'Ocorreu um erro, tente novamente!'); // Verifica se o índices passados através da variável global $_GET  são vazios ou nulos.
 
 
-Middleware::verificaCampos($_GET, array('i'), '/views/admin/clientes/gerenciarClientes.php', 'Ocorreu um erro, tente novamente!');
+$clienteModel = new Cliente(); // Instância da classe Cliente para utilização de seus metódos.
 
 
-$clienteModel = new Cliente();
+$cliente = $clienteModel->busca('id', (base64_decode($_GET['i'])));  // Buscando um cliente no banco de dados pela descriptografia em base64 do $_GET no indice i (que é o id);
 
-
-$cliente = $clienteModel->busca('id', (base64_decode($_GET['i'])));
-
-if (!$cliente) {
-    Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Cliente não encontrado');
+if (!$cliente) {// Verifica se o retorno da variável $cliente é falso. O que representa que não foi encontrado nenhum cliente com o id  passado pelo $_GET.
+    Middleware::redirecionar('/views/admin/clientes/gerenciarClientes.php', 'danger', 'Cliente não encontrado');  // Redireciona para a página de gerenciamento de clientes  com uma mensagem (informando o erro) armazenada  em uma sessão. 
 }
 
 
@@ -50,9 +50,9 @@ if (!$cliente) {
 <body>
     <div id="wrapper">
         <!--/. NAV BAR -->
-        <?php include('../components/navbar.php'); ?>
+        <?php include('../components/navbar.php'); ?> <!-- incluindo o nav-bar -->
         <!--/. NAV TOP  -->
-        <?php include('../components/menu.php'); ?>
+        <?php include('../components/menu.php'); ?> <!-- incluindo o menu -->
 
         </nav>
         <!-- /. NAV SIDE  -->
@@ -70,7 +70,7 @@ if (!$cliente) {
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('../components/alerts.php') ?>
+                                <?php include('../components/alerts.php') ?>  <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                                 <form method="POST" action="../../../app/actions/admin/clientes/editar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
@@ -90,7 +90,7 @@ if (!$cliente) {
                                             <input name="email" type="email" class="validate" value="<?= $cliente['email'] ?>">
                                             <label>Email</label>
                                         </div>
-
+                                                    
                                         <input name="i" type="hidden" value="<?= base64_encode($cliente['id']) ?>" class="validate">
 
                                     </div>

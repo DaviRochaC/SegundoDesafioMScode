@@ -5,7 +5,7 @@ require('../../../vendor/autoload.php');
 
 use App\Models\Services\Auth\Middleware;
 
-Middleware::verificaAdminLogado();
+Middleware::verificaAdminLogado(); // Verifica se usuario administrador está logado.
 
 
 
@@ -37,9 +37,9 @@ Middleware::verificaAdminLogado();
 <body>
     <div id="wrapper">
         <!--/. NAV BAR -->
-        <?php include('../components/navbar.php'); ?>
+        <?php include('../components/navbar.php'); ?>  <!-- incluindo o nav-bar -->
         <!--/. NAV TOP  -->
-        <?php include('../components/menu.php'); ?>
+        <?php include('../components/menu.php'); ?> <!-- incluindo o menu -->
 
         </nav>
         <!-- /. NAV SIDE  -->
@@ -57,7 +57,7 @@ Middleware::verificaAdminLogado();
                         <div class="card">
 
                             <div class="card-content">
-                                <?php include('../components/alerts.php') ?>
+                                <?php include('../components/alerts.php') ?>  <!-- incluindo o arquivo alerts.php para mostrar possiveis mensagens armazenadas em sessões -->
                             <form method="POST" action="../../../app/actions/admin/clientes/cadastrar.php" class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
