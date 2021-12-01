@@ -1,5 +1,7 @@
 <?php
 
+//Obs: o CSS está in line pois os serviços de email bloqueiam qualquer importação de css no arquivo ao ler o arquivo.
+
 $mensagem =$_SESSION['orcamento_resposta_pendente'];
 unset($_SESSION['orcamento_resposta_pendente']);
 

@@ -55,5 +55,5 @@ $conteudoHtml = ob_get_clean();    // Obtêm o conteúdo do buffer e armazena na
 $emailEnviado = $emailModel->enviarEmail($admin['email'], $assunto, $conteudoHtml);   // Envia um email para o endereço de email do administrador que estava desativado no banco de dados. 
 
 if ($emailEnviado) {    // Verifica se a variável $emailEnviado é igual a verdadeiro.
-    Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'success', 'Administrador deletado com sucesso!');  // Redireciona para a página de gerenciamento de Administradores  com uma mensagem armazenada em uma sessão. 
+    Middleware::redirecionar('/views/admin/gerenciarAdmin.php', 'success', 'Administrador desativado com sucesso!');  // Redireciona para a página de gerenciamento de Administradores  com uma mensagem armazenada em uma sessão. 
 }

@@ -1,5 +1,6 @@
 <?php
 
+//Obs: o CSS está in line pois os serviços de email bloqueiam qualquer importação de css no arquivo ao ler o arquivo.
 $mensagem = $_SESSION['ativação_admin'];
 unset($_SESSION['ativação_admin']);
 

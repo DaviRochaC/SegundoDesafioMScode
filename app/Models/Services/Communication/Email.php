@@ -20,10 +20,10 @@ class Email
     public function enviarEmail(string $destinatario, string $assunto, string $conteudoHtml)
     {
 
-        $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');
+        $dotenv = Dotenv::createUnsafeMutable('/opt/lampp/htdocs/mscode/challengetwo/');  //Instancia da classe Dotenv especificando o caminho do arquivo .env     
 
 
-        $dotenv->load();
+        $dotenv->load(); // Faz a leitura do arquivo .env
 
         $this->mail = new PHPMailer(true);
 
